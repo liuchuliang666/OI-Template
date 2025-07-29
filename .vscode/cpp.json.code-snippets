@@ -1,0 +1,206 @@
+{
+    // Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and
+    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+    // same ids are connected.
+    // Example:
+    // "Print to console": {
+    //     "prefix": "log",
+    //     "body": [
+    //     "console.log('$1');",
+    //     "$2"
+    //     ],
+    //     "description": "Log output to console"
+    // }
+    "template": {
+        "prefix": "```cpp",
+        "body": [
+            "#include <bits/stdc++.h>",
+            "using namespace std;",
+            "#define endl '\\n'",
+            "#define eb emplace_back",
+            "#define ep emplace",
+            "#define fi first",
+            "#define se second",
+            "#define rep(i, l, r, ...) for (int i = (l), i##e = (r), ##__VA_ARGS__; i <= i##e; ++i)",
+            "#define per(i, r, l, ...) for (int i = (r), i##e = (l), ##__VA_ARGS__; i >= i##e; --i)",
+            "#define mst(x, val, len) memset(x, val, sizeof((x)[0]) * (int(len) + 1))",
+            "#define mcp(from, to, len) memcpy(to, from, sizeof((to)[0]) * (int(len) + 1))",
+            "#define mid (((l) + (r)) >> 1)",
+            "#define int ll",
+            "typedef long long ll;",
+            "typedef vector<int> vi;",
+            "typedef pair<int, int> pii;",
+            "constexpr int MAXN = 2e5 + 10, inf = 1e18, mod = 998244353;",
+            "template <typename T> inline void chkmx(T &a, const T b) { a = a < b ? b : a; }",
+            "template <typename T> inline void chkmn(T &a, const T b) { a = a > b ? b : a; }",
+            "template <typename T> inline void add(T &a, const T b) { a = ((a + b) % mod + mod) % mod; }",
+            "template <typename T> inline void mul(T &a, const T b) { a = ((a * b) % mod + mod) % mod; }",
+            "signed main()",
+            "{",
+            "    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);",
+            "    $0",
+            "    return 0;",
+            "}",
+        ],
+        "description": "template"
+    },
+    "header": {
+        "prefix": "```head",
+        "body": [
+            "#include <bits/stdc++.h>",
+            "using namespace std;",
+            "#define endl '\\n'",
+            "#define eb emplace_back",
+            "#define ep emplace",
+            "#define fi first",
+            "#define se second",
+            "#define rep(i, l, r, ...) for (int i = (l), i##e = (r), ##__VA_ARGS__; i <= i##e; ++i)",
+            "#define per(i, r, l, ...) for (int i = (r), i##e = (l), ##__VA_ARGS__; i >= i##e; --i)",
+            "#define mst(x, val, len) memset(x, val, sizeof((x)[0]) * (int(len) + 1))",
+            "#define mcp(from, to, len) memcpy(to, from, sizeof((to)[0]) * (int(len) + 1))",
+            "#define mid (((l) + (r)) >> 1)",
+            "#define int ll",
+            "typedef long long ll;",
+            "typedef vector<int> vi;",
+            "typedef pair<int, int> pii;",
+            "constexpr int MAXN = 2e5 + 10, inf = 1e18, mod = 998244353;",
+            "template <typename T> inline void chkmx(T &a, const T b) { a = a < b ? b : a; }",
+            "template <typename T> inline void chkmn(T &a, const T b) { a = a > b ? b : a; }",
+            "template <typename T> inline void add(T &a, const T b) { a = ((a + b) % mod + mod) % mod; }",
+            "template <typename T> inline void mul(T &a, const T b) { a = ((a * b) % mod + mod) % mod; }",
+        ]
+    },
+    "freopen": {
+        "prefix": "```fre",
+        "body": [
+            "freopen(\"${1:${TM_FILENAME_BASE}}.in\", \"r\", stdin);",
+            "freopen(\"${1:${TM_FILENAME_BASE}}.out\", \"w\", stdout);",
+        ],
+        "description": "freopen template"
+    },
+    "fastio": {
+        "prefix": "```fio",
+        "body": "ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);",
+        "description": "close sync to get faster io"
+    },
+    "gccfastio": {
+        "prefix": "```sfio",
+        "body": [
+            "inline int read()",
+            "{",
+            "    static int x, f;",
+            "    static char ch;",
+            "    for (f = 1, ch = getchar(); !isdigit(ch); ch = getchar()) (ch != '-' || (f = -1));",
+            "    for (x = 0; isdigit(ch); ch = getchar()) x = (x << 3) + (x << 1) + (ch ^ 48);",
+            "    return x * f;",
+            "}",
+            "inline void write(int x)",
+            "{",
+            "    static signed num[100] = {}, top = 0;",
+            "    (x >= 0 || (putchar('-'), x = -x));",
+            "    do num[++top] = x % 10;",
+            "    while (x /= 10);",
+            "    while (top) putchar(num[top--] + '0');",
+            "}",
+        ]
+    },
+    "superfastio": {
+        "prefix": "```fastio",
+        "body": [
+            "struct FastIO",
+            "{",
+            "#ifdef ONLINE_JUDGE",
+            "    static constexpr int siz = 1 << 15;",
+            "    char inbuf[siz], oubuf[siz], *pa, *pb, *p;",
+            "    FastIO() : pa(inbuf), pb(inbuf), p(oubuf), inbuf({}), oubuf({}) {}",
+            "    ~FastIO() { (p != oubuf && fwrite(p = oubuf, 1, p - oubuf, stdout)); }",
+            "    inline char gc() { return (pa == pb && (pb = (pa = inbuf) + fread(inbuf, 1, siz, stdin), pa == pb)) ? EOF : *(pa++); }",
+            "    inline void pc(const char c) { (p - oubuf == siz && fwrite(p = oubuf, 1, siz, stdout)), *p++ = c; }",
+            "#else",
+            "    inline char gc() { return getchar(); }",
+            "    inline void pc(const char c) { putchar(c); }",
+            "#endif",
+            "} fastio;",
+            "template <typename T = int> inline T read()",
+            "{",
+            "    static T x, f;",
+            "    static char ch;",
+            "    for (f = 1, ch = fastio.gc(); !isdigit(ch); ch = fastio.gc()) (ch != '-' || (f = -1));",
+            "    for (x = 0; isdigit(ch); ch = fastio.gc()) x = (x << 3) + (x << 1) + (ch ^ 48);",
+            "    return x * f;",
+            "}",
+            "template <typename T> inline void write(T x, const char ed = '\\n')",
+            "{",
+            "    static signed num[100] = {}, top = 0;",
+            "    (x >= 0 || (fastio.pc('-'), x = -x));",
+            "    do num[++top] = x % 10;",
+            "    while (x /= 10);",
+            "    while (top) fastio.pc(num[top--] + '0');",
+            "    fastio.pc(ed);",
+            "}",
+            "template <typename... T> inline void reads(T &...x) { (void)(signed[]){(x = read<T>(), 0)...}; }",
+            "template <typename... T> inline void writes(const T &...x) { (void)(signed[]){(write(x, ' '), 0)...}, fastio.pc('\\n'); }",
+        ],
+        "description": "get super faster io"
+    },
+    "superdefine": {
+        "prefix": "```bint",
+        "body": [
+            "typedef unsigned long long ull;",
+            "typedef __int128 i128;",
+            "typedef pair<ull, ull> pull;",
+            "typedef pair<i128, i128> pi128;",
+        ],
+        "description": "superdefine"
+    },
+    "sgtdef": {
+        "prefix": "```sgtdef",
+        "body": [
+            "#define ls ((x) << 1)",
+            "#define rs ((x) << 1 | 1)",
+        ]
+    },
+    "pbds": {
+        "prefix": "```pbds",
+        "body": [
+            "#include <ext/pb_ds/assoc_container.hpp>",
+            "#include <ext/pb_ds/hash_policy.hpp>",
+            "#include <ext/pb_ds/priority_queue.hpp>",
+            "#include <ext/pb_ds/tree_policy.hpp>",
+            "namespace pbds = __gnu_pbds;",
+            "template <typename T> using pbds_map = pbds::tree<T, pbds::null_type, less<T>, pbds::rb_tree_tag, pbds::tree_order_statistics_node_update>;",
+        ],
+        "description": "pbds"
+    },
+    "qpow": {
+        "prefix": "```qpow",
+        "body": [
+            "int qpow(int a, int b)",
+            "{",
+            "    static int res;",
+            "    for (res = 1; b; b >>= 1, mul(a, a)) ((b & 1) && (mul(res, a), 1));",
+            "    return res;",
+            "}",
+            "int inv(int x) { return qpow(x, mod - 2); }",
+        ]
+    },
+    "graph": {
+        "prefix": "```graph",
+        "body": [
+            "#define go(u, i) for (int i = head[u]; i; i = e[i].nxt)",
+            "struct edge",
+            "{",
+            "    int v, w, nxt;",
+            "} e[${MAXN} << 1];",
+            "int head[MAXN];",
+            "inline void addedge(int u, int v, int w)",
+            "{",
+            "    static int edgecnt = 0;",
+            "    e[++edgecnt] = {v, w, head[u]};",
+            "    head[u] = edgecnt;",
+            "}",
+            "inline void adde(int u, int v, int w) { addedge(u, v, w), addedge(v, u, w); }",
+        ]
+    }
+}

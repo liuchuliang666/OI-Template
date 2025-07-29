@@ -1,0 +1,102 @@
+#include <bits/stdc++.h>
+using namespace std;
+namespace IO
+{
+#define siz 1 << 20
+    char buf[siz], *pa = buf, *pb = buf;
+#define gc()                                                              \
+    (pa == pb && (pb = (pa = buf) + fread(buf, 1, siz, stdin), pa == pb)) \
+        ? EOF                                                             \
+        : *(pa++)
+    inline int read()
+    {
+        int x = 0, f = 1;
+        char ch;
+        for (ch = gc(); !isdigit(ch); ch = gc())
+            if (ch == '-') f = -1;
+        for (; isdigit(ch); ch = gc())
+        {
+            x = (x << 3) + (x << 1) + (ch - '0');
+        }
+        return f * x;
+    }
+    inline void write(int x)
+    {
+        if (x < 0)
+        {
+            putchar('-');
+            x = -x;
+        }
+        if (x > 9) write(x / 10);
+        putchar(x % 10 + '0');
+        return;
+    }
+#undef siz
+#undef gc
+} // namespace IO
+using IO::read;
+using IO::write;
+#define MAXN 60
+typedef unsigned long long ull;
+vector<int> e[MAXN];
+ull hsh[MAXN];
+map<ull, int> treehash;
+mt19937_64 rnd;
+ull rnd1 = rnd(), rnd2 = rnd(), rnd3 = rnd();
+ull gethash(ull x)
+{
+    x ^= rnd1;
+    x ^= x << 13;
+    x ^= rnd2;
+    x ^= x >> 7;
+    x ^= rnd3;
+    return x;
+}
+void dfs(int u, int f)
+{
+    hsh[u] = 1;
+    for (auto &v : e[u])
+    {
+        if (v == f) continue;
+        dfs(v, u);
+        hsh[u] += gethash(hsh[v]);
+    }
+    return;
+}
+inline void clear()
+{
+    for (auto &i : e) i.clear();
+}
+int m;
+int main()
+{
+    m = read();
+    for (int k = 1; k <= m; k++)
+    {
+        clear();
+        int n = read();
+        for (int i = 1; i <= n; i++)
+        {
+            int v = read();
+            if (v)
+            {
+                e[i].push_back(v);
+                e[v].push_back(i);
+            }
+        }
+        int ans = k;
+        for (int i = 1; i <= n; i++)
+        {
+            dfs(i, i);
+            if (treehash.find(hsh[i]) == treehash.end())
+            {
+                treehash.insert(make_pair(hsh[i], k));
+            }
+            else
+                ans = treehash[hsh[i]];
+        }
+        write(ans);
+        puts("");
+    }
+    return 0;
+}

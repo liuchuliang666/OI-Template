@@ -1,0 +1,289 @@
+site_name: LCL's OI-Template
+site_description: OI-Template is a template code repo for liuchuliang666.
+site_author: liuchuliang666
+site_url: https://oi-template-for-lcl.netlify.app
+strict: false
+
+repo_name: 'wgsylcl/OI-Template'
+repo_url: 'https://gitee.com/wgsylcl/oi-template'
+edit_uri_template: "https://gitee.com/wgsylcl/oi-template/edit/main/docs/{path}"
+
+nav:
+  - 简介:
+    - 首页: index.md
+  - 语言相关:
+    - 语言相关: Lang/Lang.md
+    - C++ 标准库:
+      - C++ 标准库简介: Lang/csl/index.md
+      - STL 容器:
+        - STL 容器简介: Lang/csl/container.md
+        - 迭代器: Lang/csl/iterator.md
+        - 序列式容器: Lang/csl/sequence-container.md
+        - 关联式容器: Lang/csl/associative-container.md
+        - 无序关联式容器: Lang/csl/unordered-container.md
+        - 容器适配器: Lang/csl/container-adapter.md
+      - STL 算法: Lang/csl/algorithm.md
+      - bitset: Lang/csl/bitset.md
+      - string: Lang/csl/string.md
+      - pair: Lang/csl/pair.md
+    - 重载运算符: Lang/op-overload.md
+    - Lambda 表达式: Lang/lambda.md
+    - pbds库: Lang/pb_ds库.md
+    - Testlib:
+      - Testlib 简介: Lang/testlib/index.md
+      - 通用: Lang/testlib/general.md
+      - Generator: Lang/testlib/generator.md
+      - Validator: Lang/testlib/validator.md
+      - Interactor: Lang/testlib/interactor.md
+      - Checker: Lang/testlib/checker.md
+    - Tuack 出题库（官方 wiki）:
+      - Home: Lang/tuack/home.md
+      - 从这里开始: Lang/tuack/从这里开始.md
+      - 基本使用方式: Lang/tuack/基本使用方式.md
+      - 如何使用工程: Lang/tuack/如何使用工程.md
+      - 常见问题: Lang/tuack/常见问题.md
+      - 文件的存放和定义: Lang/tuack/文件的存放和定义.md
+      - 相关工具: Lang/tuack/相关工具.md
+      - 题面的书写: Lang/tuack/题面的书写.md
+    - Cyaron 库（官方 wiki）:
+      - Python 快速入门: Lang/cyaron/Python-30分钟入门指南.md
+      - 基本入门: Lang/cyaron/基本入门.md
+      - 输入输出 IO: Lang/cyaron/输入输出-IO.md
+      - 图 Graph: Lang/cyaron/图-Graph.md
+      - 多边形 Polygon: Lang/cyaron/多边形-Polygon.md
+      - 向量 Vector: Lang/cyaron/向量-Vector.md
+      - 字符串 String: Lang/cyaron/字符串-String.md
+      - 序列 Sequence: Lang/cyaron/序列-Sequence.md
+      - 对拍器 Compare: Lang/cyaron/对拍器-Compare.md
+      - 工具函数: Lang/cyaron/工具函数.md
+      - 常用常数: Lang/cyaron/常用常数.md
+      - 数学函数: Lang/cyaron/数学函数.md
+      - 提高运行效率: Lang/cyaron/提高运行效率.md
+  - 分治与倍增:
+    - 分治与倍增: DivideAndDouble/分治与倍增.md
+    - CDQ 分治: DivideAndDouble/CDQ分治.md
+    - ST 表: DivideAndDouble/ST表.md
+  - 动态规划:
+    - 动态规划: DP/动态规划.md
+    - 插头 DP: DP/插头DP.md
+    - 轮廓线 DP: DP/轮廓线DP.md
+    - 矩阵加速 DP: DP/矩阵加速DP.md
+    - 线段树优化 DP: DP/线段树优化DP.md
+    - 长链剖分优化 DP: DP/长链剖分优化DP.md
+    - 斜率优化 DP: DP/斜率优化DP.md
+    - 动态 DP: DP/动态DP.md
+    - 四边形不等式优化 DP: DP/四边形不等式.md
+    - wqs 二分: DP/wqs.md
+    - 斜率维护技巧 Slope Trick: DP/slope-trick.md
+    - DP 套 DP: DP/DP_of_DP.md
+  - 图论和树论:
+    - 图论: Graph/图论.md
+    - 一些概念: Graph/一些概念.md
+    - 最短路: Graph/shortest-path.md
+    - 2-SAT: Graph/2-SAT.md
+    - 点分治: Graph/点分治.md
+    - 连通分量: Graph/连通分量.md
+    - 圆方树: Graph/圆方树.md
+    - 仙人掌图: Graph/仙人掌图.md
+    - 虚树: Graph/虚树.md
+    - 树哈希: Graph/树哈希.md
+    - 树链剖分: Graph/树链剖分.md
+    - 网络流: Graph/网络流.md
+    - KM算法: Graph/KM.md
+    - 树上启发式合并 DSU on Tree: Graph/DSU on Tree.md
+  - 数学:
+    - 数学: Math/数学.md
+    - 组合数学:
+      - 组合数学: Math/Combine/组合数学.md
+      - 排列组合: Math/Combine/排列组合.md
+      - 卡特兰数: Math/Combine/卡特兰数.md
+      - 卢卡斯定理: Math/Combine/卢卡斯定理.md
+      - Pólya 计数: Math/Combine/Pólya计数.md
+      - 组合数学与 DP 结合: Math/Combine/组合数学与DP结合.md
+      - 杨氏矩阵: Math/Combine/杨氏矩阵.md
+    - 线性代数:
+      - 线性代数: Math/LinearAlgebra/线性代数.md
+      - 向量: Math/LinearAlgebra/向量.md
+      - 矩阵: Math/LinearAlgebra/矩阵.md
+      - 高斯消元: Math/LinearAlgebra/高斯消元.md
+    - 数论:
+      - 数论: Math/Number/数论.md
+      - 模意义下的乘法逆元: Math/Number/模意义下的乘法逆元.md
+      - 线性筛: Math/Number/线性筛.md
+      - 中国剩余定理: Math/Number/中国剩余定理.md
+      - 扩展中国剩余定理: Math/Number/扩展中国剩余定理.md
+      - 狄利克雷卷积: Math/Number/狄利克雷卷积.md
+      - 二次剩余: Math/Number/二次剩余.md
+      - 积性函数:
+        - 积性函数: Math/Number/Mulfunc/积性函数.md
+        - 欧拉函数及有关定理: Math/Number/Mulfunc/欧拉函数及有关定理.md
+        - 莫比乌斯函数及有关性质: Math/Number/Mulfunc/莫比乌斯函数及有关性质.md
+        - 杜教筛: Math/Number/Mulfunc/杜教筛.md
+    - 多项式与生成函数:
+      - 多项式: Math/Poly/多项式.md
+      - 快速傅里叶变换 (FFT): Math/Poly/FFT.md
+      - 快速数论变换 (NTT): Math/Poly/NTT.md
+      - 快速莫比乌斯/沃尔什变换 (FWT/FMT): Math/Poly/FWT.md
+      - 分治 FFT: Math/Poly/分治FFT.md
+      - 常见高等数学背景: Math/Poly/常见高等数学背景.md
+      - 多项式牛顿迭代: Math/Poly/多项式牛顿迭代.md
+      - 多项式初等函数: Math/Poly/多项式初等函数.md
+      - 常系数线性齐次递推: Math/Poly/常系数线性齐次递推.md
+      - Lagrange 反演: Math/Poly/Lagrange反演.md
+      - 单位根反演: Math/Poly/单位根反演.md
+      - 生成函数:
+        - 普通生成函数: Math/Poly/普通生成函数.md
+        - 指数生成函数: Math/Poly/指数生成函数.md
+    - 概率与统计: Math/PossiblityAndSummarize/概率与统计.md
+  - 根号算法:
+    - 根号类算法: Sqrt/根号类算法.md
+    - 分块: Sqrt/分块.md
+    - 莫队: Sqrt/莫队.md
+    - 回滚莫队: Sqrt/回滚莫队.md
+    - 块状链表: Sqrt/块状链表.md
+  - 字符串:
+    - 字符串: String/字符串.md
+    - AC 自动机: String/AC自动机.md
+    - KMP: String/KMP.md
+    - Manacher: String/manacher.md
+    - 后缀数组: String/后缀数组.md
+    - 后缀自动机 SAM: String/后缀自动机.md
+    - 广义后缀自动机 exSAM: String/广义后缀自动机.md
+  - 树形数据结构:
+    - 树形数据结构: DS/树形数据结构.md
+    - 树状数组及其进阶应用: DS/BIT.md
+    - 线段树及其进阶应用:
+      - 线段树分裂: DS/线段树分裂.md
+      - 线段树合并: DS/线段树合并.md
+      - 可持久化线段树: DS/可持久化线段树.md
+      - 树套树: DS/树套树.md
+      - 李超线段树: DS/李超线段树.md
+      - 线段树分治: DS/线段树分治.md
+      - 历史和线段树: DS/历史和线段树.md
+    - 平衡树:
+      - FHQ-Treap: DS/FHQ-Treap.md
+      - Splay: DS/Splay.md
+    - 动态树:
+      - Link Cut Tree: DS/LCT.md
+    - 左偏树: DS/左偏树.md
+    - K-D 树: DS/kdt.md
+    - 珂朵莉树（ODT）: DS/ODT.md
+  - 思维题:
+    - 思维题: Think/思维题.md
+    - P3641 [APIO2016] 最大差分: Think/P3641.md
+    - P7078 [CSP-S2020] 贪吃蛇: Think/P7078.md
+  - 做题记录:
+    - 做题记录: Daily/做题记录.md
+    - P11364 [NOIP2024] 树上查询: Daily/P11364.md
+    - P3641 [APIO2016] 最大差分: Daily/P3641.md
+    - P7962 [NOIP2021] 方差: Daily/P7962.md
+    - P7078 [CSP-S2020] 贪吃蛇: Daily/P7078.md
+    - P8867 [NOIP2022] 建造军营: Daily/P8867.md
+  - 杂项:
+    - 杂项: Other/杂项.md
+    - 随机化:
+      - 爬山算法: Other/random/爬山.md
+      - 模拟退火: Other/random/模拟退火.md
+    - 分数规划: Other/frac-programming.md
+    - 扫描线: Other/扫描线.md
+    - 整体二分: Other/整体二分.md
+    # - 唐氏矩阵: Other/entertainment/唐氏矩阵.md
+    - 好玩的:
+      - 小文章:
+        - 小文章: Other/entertainment/articles/小文章.md
+        - 霸道泽睿爱上雨之: Other/entertainment/articles/霸道泽睿爱上雨之.md
+        - 如何在机房摸鱼而不被教练发现: Other/entertainment/articles/如何在机房摸鱼而不被教练发现.md
+        - 吴金全的自我介绍: Other/entertainment/articles/吴金全的自我介绍.md
+        - 李睿の获奖感言: Other/entertainment/articles/李睿の获奖感言.md
+      - 小娱乐:
+        - 小娱乐: Other/entertainment/entertainment/小娱乐.md
+        - 好的故事: Other/entertainment/entertainment/好的故事.md
+        - 音乐推荐: Other/entertainment/entertainment/音乐推荐.md
+      - 戏剧:
+        - 戏剧: Other/entertainment/dramas/戏剧.md
+        - 窦娥冤 第三折: Other/entertainment/dramas/窦娥冤.md
+        - 雷雨 节选: Other/entertainment/dramas/雷雨.md
+        - 哈姆莱特 第三幕 第一场 城堡中一室: Other/entertainment/dramas/哈姆莱特.md
+
+theme:
+  name: material
+  custom_dir: overrides
+  static_templates:
+    - 404.html
+  language: 'zh'
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+  favicon: 'favicon.ico'
+  icon:
+    logo: 'material/school'
+  features:
+    - content.action.edit
+    - navigation.tabs
+    - navigation.instant
+    - navigation.top
+    - search.suggest
+    - search.share
+    - content.code.copy
+  font:
+    text: 'San Francisco'
+    code: 'Consolas'
+
+plugins:
+  - mkdocs-video
+  - search
+
+hooks:
+  - hooks/katex.py
+
+extra_javascript:
+  - _static/js/katex.js
+  - _static/js/openlink.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+extra_css:
+  - '_static/css/extra.css?v=16'
+  - '_static/css/katex.css'
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - document-offsets-injection:
+  - admonition
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: ""
+      slugify: !!python/name:pymdownx.slugs.uslugify
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.progressbar
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: math
+          class: arithmatex
+          format: !!python/name:pymdownx.arithmatex.fence_mathjax_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true

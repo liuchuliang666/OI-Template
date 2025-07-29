@@ -1,0 +1,10 @@
+[build]
+  base = "./" # Trick to disable dependencies installation
+  command = "chmod +x ./scripts/netlify/build.sh && ./scripts/netlify/build.sh && python updateidx.py && python -m mkdocs build -v"
+  publish = "site"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  directory = "netlify/functions/"

@@ -1,0 +1,4 @@
+.md-typeset .katex-display {
+  margin: 0.3em 0;
+  padding: 0.5rem 0;  /* 按需调整内间距 */
+}

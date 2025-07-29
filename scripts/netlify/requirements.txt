@@ -1,0 +1,9 @@
+mkdocs
+mkdocs-material
+mkdocs-video
+pymdown-extensions
+pygments
+beautifulsoup4
+requests
+python-markdown-document-offsets-injection-extension
+markdown

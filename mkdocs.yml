@@ -222,7 +222,7 @@ theme:
   features:
     - content.action.edit
     - navigation.tabs
-    - navigation.instant
+    # - navigation.instant
     - navigation.top
     - search.suggest
     - search.share

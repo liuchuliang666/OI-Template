@@ -106,6 +106,8 @@ nav:
       - 向量: Math/LinearAlgebra/向量.md
       - 矩阵: Math/LinearAlgebra/矩阵.md
       - 高斯消元: Math/LinearAlgebra/高斯消元.md
+      - 线性空间: Math/LinearAlgebra/vector-space.md
+      - 线性基: Math/LinearAlgebra/basis.md
     - 数论:
       - 数论: Math/Number/数论.md
       - 模意义下的乘法逆元: Math/Number/模意义下的乘法逆元.md

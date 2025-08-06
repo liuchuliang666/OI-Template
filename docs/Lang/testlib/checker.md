@@ -268,3 +268,9 @@ Checker 从命令行参数读取到输入文件名、选手输出文件名、标
 LemonLime 的命令行顺序与 Testlib 的格式不同，为了兼容，Github 上有一个 [Testlib for Lemons](https://github.com/GitPinkRabbit/Testlib-for-Lemons) 用以兼容，其新增了一个函数 `registerLemonChecker(argc, argv)`用以替代`registerTestlibCmd(argc, argv)`，其余用法相同。
 
 为了方便区分，Testlib for Lemons 中定义了宏 `TESTLIB_FOR_LEMONS`，可以利用。
+
+## 对 Arbiter 的支持
+
+Arbiter 是 CNOI 评测工具，其对 SPJ 的格式要求与上面不同。
+
+幸运的是，这里有一个为 Arbiter 准备的版本：[Testlib for Arbiter](https://github.com/HeRaNO/ChickenRibs/tree/master/testlib-for-arbiter)。

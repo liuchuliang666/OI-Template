@@ -67,6 +67,7 @@ nav:
     - 动态规划: DP/动态规划.md
     - 插头 DP: DP/插头DP.md
     - 轮廓线 DP: DP/轮廓线DP.md
+    - 单调队列（单调栈）优化DP: DP/单调队列（单调栈）优化DP.md
     - 矩阵加速 DP: DP/矩阵加速DP.md
     - 线段树优化 DP: DP/线段树优化DP.md
     - 长链剖分优化 DP: DP/长链剖分优化DP.md

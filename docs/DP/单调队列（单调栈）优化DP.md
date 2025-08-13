@@ -36,8 +36,8 @@ $$
 
 $$
 \begin{aligned}
-f_{i, d + j \times v_i} &= \max_{j - k \leq c}\{f_{i - 1, d + k \times v_i} + (j - k) \times w_i\} \\
-                        &= \max_{j - c \leq k}\{f_{i - 1, d + k \times v_i} - k \times w_i\} + j \times w_i
+f_{i, d + j \times v_i} &= \max_{0 \leq j - k \leq c_i}\{f_{i - 1, d + k \times v_i} + (j - k) \times w_i\} \\
+                        &= \max_{j - c_i \leq k \leq j}\{f_{i - 1, d + k \times v_i} - k \times w_i\} + j \times w_i
 \end{aligned}
 $$
 

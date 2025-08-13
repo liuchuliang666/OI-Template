@@ -31,6 +31,7 @@ template <typename T> inline void Mul(T &a, const T b) { a = ((a * b) % mod + mo
 template <typename T> inline void add(T &a, const T b) { a = (a + b >= mod ? a + b - mod : a + b); }
 template <typename T> inline void mul(T &a, const T b) { a = a * b % mod; }
 bool MST;
+// q[i] 为可以转移的 k，g[j] 为 f[i - 1][d + j * v[i]] - j * w[i]
 int n, m, ans, hd, tl, q[MAXN], f[MAXN], g[MAXN];
 bool MED;
 signed main()

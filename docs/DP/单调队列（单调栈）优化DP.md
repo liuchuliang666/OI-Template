@@ -20,31 +20,30 @@
 ## 单调队列优化多重背包
 
 ???+ question "[P1776 宝物筛选](https://www.luogu.com.cn/problem/P1776)"
-    你有 $n$ 个物品，每个物品重量为 $w_i$，价值为 $v_i$，数量为 $k_i$。你有一个承重上限为 $W$ 的背包，现在要求你在不超过重量上限的情况下选取价值和尽可能大的物品放入背包。求最大价值。
+    你有 $n$ 个物品，每个物品重量为 $v_i$，价值为 $w_i$，数量为 $c_i$。你有一个承重上限为 $m$ 的背包，现在要求你在不超过重量上限的情况下选取价值和尽可能大的物品放入背包。求最大价值。
 
 设 $f_{i,j}$ 表示前 $i$ 个物品装入承重为 $j$ 的背包的最大价值，朴素的转移方程为
 
 $$
-f_{i,j}=\max_{k=0}^{k_i}(f_{i-1,j-k\times w_i}+v_i\times k)
+f_{i,j}=\max_{k=0}^{c_i}\{f_{i-1,j-k\times v_i}+k\times w_i\}
 $$
 
-时间复杂度 $O(W\sum k_i)$。
+时间复杂度 $O(m\sum c_i)$。
 
-考虑优化 $f_i$ 的转移。为方便表述，设 $g_{x,y}=f_{i,x\times w_i+y},g'_{x,y}=f_{i-1,x\times w_i+y}$，其中 $0\le y \lt w_i$，则转移方程可以表示为：
+这看起来无法优化，但注意到，对于每一个物品，转移一定相隔 $v_i$ 的倍数，也就是说，转移一定在 $f_{i, d}, f_{i, d + v_i}, f_{i, d + 2v_i}, ..., f_{i, d + k \times v_i}$ 之间进行。
 
-$$
-g_{x,y}=\max_{k=0}^{k_i}(g'_{x-k,y}+v_i\times k)
-$$
-
-设 $G_{x,y}=g'_{x,y}-v_i\times x$。则方程可以表示为：
+由此为出发点，我们枚举这个 $d$（它实际上是当前容量模 $v_i$ 的结果），改写转移方程：
 
 $$
-g_{x,y}=\max_{k=0}^{k_i}(G_{x-k,y})+v_i\times x
+\begin{aligned}
+f_{i, d + j \times v_i} &= \max_{j - k \leq c}\{f_{i - 1, d + k \times v_i} + (j - k) \times w_i\} \\
+                        &= \max_{j - c \leq k}\{f_{i - 1, d + k \times v_i} - k \times w_i\} + j \times w_i
+\end{aligned}
 $$
 
-这样就转化为一个经典的单调队列优化形式了。$G_{x,y}$ 可以 $O(1)$ 计算，因此对于固定的 $y$，我们可以在 $O\left( \left\lfloor \dfrac{W}{w_i} \right\rfloor \right)$ 的时间内计算出 $g_{x,y}$。因此求出所有 $g_{x,y}$ 的复杂度为 $O\left( \left\lfloor \dfrac{W}{w_i} \right\rfloor \right)\times O(w_i)=O(W)$。这样转移的总复杂度就降为 $O(nW)$。
+这样就可以单调队列优化了，每次转移就是 $O(d) \times O(\lfloor\frac{m}{d}\rfloor) = O(m)$ 的，总复杂度为 $O(nm)$。
 
-在实现的时候，我们需要先枚举 $y$，这样才能保证枚举 $x$ 的时候利用单调队列进行优化，而单调队列中存储的是 $x-k$，并不存储 $k$，不难发现 $x-k\in [x - k_i,x]$，因此在枚举 $x$ 的时候，我们需要删除队列中不在这个范围内的元素。
+显然可以滚动数组优化。
 
 ??? code "实现"
     ```cpp

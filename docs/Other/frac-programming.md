@@ -1,3 +1,5 @@
+> 本文转载（或修改）自 [OI-Wiki](https://oi-wiki.org/misc/frac-programming/)
+
 分数规划用来求一个分式的极值。
 
 形象一点就是，给出 $a_i$ 和 $b_i$，求一组 $w_i\in\{0,1\}$，最小化或最大化

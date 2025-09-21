@@ -1,3 +1,5 @@
+> 本文转载（或修改）自 [OI-Wiki](https://oi-wiki.org/math/poly/lagrange-inversion/)
+
 ## 形式 Laurent 级数
 
 我们已经知道形式幂级数环 $\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$ 了，定义形式 Laurent 级数环：

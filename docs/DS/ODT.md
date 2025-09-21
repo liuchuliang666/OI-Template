@@ -1,3 +1,5 @@
+> 本文转载（或修改）自 [OI-Wiki](https://oi-wiki.org/misc/odt/)
+
 ## 简介
 
 珂朵莉树（Chtholly Tree），又名老司机树 ODT（Old Driver Tree）。起源自 [CF896C](https://codeforces.com/problemset/problem/896/C)。

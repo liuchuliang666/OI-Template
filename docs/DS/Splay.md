@@ -1,3 +1,5 @@
+> 本文转载（或修改）自 [OI-Wiki](https://oi-wiki.org/ds/splay/)
+
 本页面将简要介绍如何用 Splay 维护二叉查找树。
 
 ## 定义

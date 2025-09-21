@@ -1,3 +1,5 @@
+> 本文转载（或修改）自 [OI-Wiki](https://oi-wiki.org/math/poly/fwt/)
+
 ## 简介
 
 > 沃尔什转换（Walsh Transform）是在频谱分析上作为离散傅立叶变换的替代方案的一种方法。——[维基百科](https://zh.wikipedia.org/zh-cn/%E6%B2%83%E7%88%BE%E4%BB%80%E8%BD%89%E6%8F%9B)
@@ -144,7 +146,7 @@ $$
 下面是模板题：
 
 ???+ question "[P4717 【模板】快速莫比乌斯/沃尔什变换 (FMT/FWT)](https://www.luogu.com.cn/problem/P4717)"
-    给定长度为 $2^n$ 两个序列 $A,B$，设 
+    给定长度为 $2^n$ 两个序列 $A,B$，设
 
     $$C_i=\sum_{j\oplus k = i}A_j \times B_k$$
 

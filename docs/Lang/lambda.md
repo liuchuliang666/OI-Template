@@ -1,3 +1,5 @@
+> 本文转载（或修改）自 [OI-Wiki](https://oi-wiki.org/lang/lambda/)
+
 **注意**：考虑到算法竞赛的实际情况，本文将不会全面研究语法，只会讲述在算法竞赛中可能会应用到的部分。
 
 本文语法参照 **C++11** 标准，其他高版本的标准语法视情况提及并会特别标注。
@@ -319,9 +321,9 @@ auto dfs = [&](int i) -> void
 
     ??? warning "不建议使用 `std::function` 实现的递归"
         `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
-        
+
         在 [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 2.5 倍。
-        
+
         ??? code "测试代码"
             ```cpp
             #include <algorithm>
@@ -392,7 +394,7 @@ auto dfs = [&](int i) -> void
     ???+ note "`auto self`、`auto& self` 和 `auto&& self` 的区别："
         `auto& self` 和 `auto&& self` 理论上都只会使用 $8$ 个字节（指针的大小）用作传参，不会发生其他的拷贝。具体要看编译器对 Lambda 的实现方式和对应的优化。
         而使用 `auto self` 会发生对象拷贝，拷贝的大小取决于捕获列表中的元素，因为它们都是这个 Lambda 类中的私有成员变量。
-        
+
 3.  如果 lambda 没有捕获任何变量，我们也可以利用函数指针。
 
     如果 lambda 没有捕获任何变量，那么它可以隐式转换为函数指针。同时 lambda 此时也可以声明为 `static`，函数指针类型也可以声明为 `static`。如此依赖，lambda 可以不需要捕获就能访问函数指针，从而实现递归。

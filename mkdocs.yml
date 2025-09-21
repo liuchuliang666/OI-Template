@@ -11,7 +11,7 @@ edit_uri_template: "https://gitee.com/wgsylcl/oi-template/edit/main/docs/{path}"
 nav:
   - 简介:
     - 首页: index.md
-  - 语言相关:
+  - 语言与工具相关:
     - 语言相关: Lang/Lang.md
     - C++ 标准库:
       - C++ 标准库简介: Lang/csl/index.md
@@ -29,6 +29,8 @@ nav:
     - 重载运算符: Lang/op-overload.md
     - Lambda 表达式: Lang/lambda.md
     - pbds库: Lang/pb_ds库.md
+    - WSL: Lang/wsl.md
+    - 命令行: Lang/cmd.md
     - Testlib:
       - Testlib 简介: Lang/testlib/index.md
       - 通用: Lang/testlib/general.md

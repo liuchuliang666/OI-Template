@@ -10,7 +10,7 @@ edit_uri_template: "https://gitee.com/liuchuliang666/oi-template/edit/main/docs/
 
 nav:
   - 简介:
-    - 首页: index.md`
+    - 首页: index.md
   - 语言与工具相关:
     - 语言相关: Lang/Lang.md
     - C++ 标准库:
@@ -67,6 +67,7 @@ nav:
     - ST 表: DivideAndDouble/ST表.md
   - 动态规划:
     - 动态规划: DP/动态规划.md
+    - 数位 DP: DP/数位DP.md
     - 插头 DP: DP/插头DP.md
     - 轮廓线 DP: DP/轮廓线DP.md
     - 单调队列（单调栈）优化 DP: DP/单调队列（单调栈）优化DP.md

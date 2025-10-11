@@ -11,11 +11,11 @@
 
 ![](./avat2.jpg)
 
-![](https://api.jerryz.com.cn/practice?id=568434&disable_cache=true)
+<!-- ![](https://api.jerryz.com.cn/practice?id=568434&disable_cache=true)
 
 ![](https://api.jerryz.com.cn/about?id=568434)
 
-![](https://api.jerryz.com.cn/shield?id=568434&disable_cache=true)
+![](https://api.jerryz.com.cn/shield?id=568434&disable_cache=true) -->
 
 ### 致谢
 

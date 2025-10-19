@@ -3,7 +3,7 @@
     UseTab: Never,
     IndentWidth: 4,
     TabWidth: 4,
-    BreakBeforeBraces: Attach, # Allman
+    BreakBeforeBraces: Allman, # Attach
     BreakTemplateDeclarations: No,
     IndentCaseLabels: true,
     ColumnLimit: 0,

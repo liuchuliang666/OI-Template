@@ -31,7 +31,7 @@ nav:
     - pbds库: Lang/pb_ds库.md
     - WSL: Lang/wsl.md
     - 命令行: Lang/cmd.md
-    - datagenerator 库使用手册: Lang/datagenerator.md
+    - Datagenerator 库使用手册: Lang/datagenerator.md
     - Testlib:
       - Testlib 简介: Lang/testlib/index.md
       - 通用: Lang/testlib/general.md

@@ -383,8 +383,8 @@ Graph<>::printParentArray(parent);  // 输出: 1 1 2 2
 - `sampleFolder`：样例数据目录
 - `makeDataFunc`：测试数据生成函数，默认啥也不做
 - `makeSampleFunc`：样例数据生成函数，默认啥也不做
-- `testGroupFunc`：测试数据组数函数，传入测试点编号，默认返回 0
-- `sampleGroupFunc`：样例数据组数函数，传入测试点编号，默认返回 0
+- `testGroupFunc`：测试数据组数函数，传入测试点编号，需要返回一个数表示多测组数（0 表示不多测），默认返回 0
+- `sampleGroupFunc`：样例数据组数函数，传入测试点编号，需要返回一个数表示多测组数（0 表示不多测），默认返回 0
 - `outputTestId`：是否输出测试点编号
 
 ```cpp

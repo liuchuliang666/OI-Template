@@ -226,7 +226,7 @@ g.printTree(true);      // 输出: n 和所有边(带权重)
 
 ```cpp
 auto tree1 = genTree(10);                   // 随机树
-auto tree2 = genTree(10, 1, true, {1,100}); // 父节点小于子节点，权重1~100
+auto tree2 = genTree(10, 1, true, {1, 100}); // 父节点小于子节点，权重1~100
 
 tree1.printTree(true);  // 输出树
 ```
@@ -268,7 +268,7 @@ star1.printWithInfo(true);
 - `weight`：权重生成器，可以是一个 pair 表示范围，可以是一个固定的数，也可以是一个函数
 
 ```cpp
-auto cycle = genCycle(10, {1,100});  // 10个顶点的环
+auto cycle = genCycle(10, {1, 100});  // 10个顶点的环
 cycle.printWithInfo(true);
 ```
 
@@ -297,7 +297,7 @@ complete.printWithInfo(true);
 
 ```cpp
 // 5左5右10条边的二分图
-auto bipartite = genBipartiteGraph(5, 5, 10, {1,100});
+auto bipartite = genBipartiteGraph(5, 5, 10, {1, 100});
 bipartite.printWithInfo(true);
 ```
 
@@ -315,7 +315,7 @@ bipartite.printWithInfo(true);
 
 ```cpp
 // 10顶点15边的连通无向图
-auto graph = genUndirectedGraph(10, 15, {1,100}, false, false, true);
+auto graph = genUndirectedGraph(10, 15, {1, 100}, false, false, true);
 graph.printWithInfo(true);
 ```
 
@@ -325,7 +325,7 @@ graph.printWithInfo(true);
 **参数**：同无向图
 
 ```cpp
-auto digraph = genDirectedGraph(10, 20, {1,50});  // 10顶点20边有向图
+auto digraph = genDirectedGraph(10, 20, {1, 50});  // 10顶点20边有向图
 digraph.printWithInfo(true);
 ```
 
@@ -335,7 +335,7 @@ digraph.printWithInfo(true);
 **参数**：同有向图
 
 ```cpp
-auto dag = genDAG(10, 15, {1,100});  // 10顶点15边DAG
+auto dag = genDAG(10, 15, {1, 100});  // 10顶点15边DAG
 dag.printWithInfo(true);
 ```
 
@@ -351,7 +351,7 @@ dag.printWithInfo(true);
 
 ```cpp
 // 100顶点200边，20%负权边
-auto killer = genSpfaKiller(100, 200, {1,10}, []{ return -1; }, 0.2);
+auto killer = genSpfaKiller(100, 200, {1, 10}, []{ return -1; }, 0.2);
 killer.printWithInfo(true);
 ```
 
@@ -364,7 +364,7 @@ killer.printWithInfo(true);
 - `root`：根节点，默认1
 
 ```cpp
-vector<int> parent = {0,1,1,2,2};  // 节点2~5的父节点
+vector<int> parent = {0, 1, 1, 2, 2};  // 节点2~5的父节点
 Graph<>::printParentArray(parent);  // 输出: 1 1 2 2
 ```
 
@@ -575,7 +575,7 @@ void generateSpecialCases(int testId) {
         default:
             // 正常随机数据
             int n = rangeRand(100, 500);
-            int m = rangeRand(n-1, min(5000, n*(n-1)/2));
+            int m = rangeRand(n - 1, min(5000, n * (n - 1) / 2));
             auto graph = genUndirectedGraph(n, m, {1, 1000});
             graph.printWithInfo(true);
     }

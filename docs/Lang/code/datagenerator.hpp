@@ -1,7 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-namespace util
-{
+namespace util {
     using ll = long long;
     /// Random number generator
     inline std::mt19937_64 rnd(std::random_device{}());
@@ -9,8 +8,7 @@ namespace util
      * @brief Set random seed
      * @param seed Random seed
      */
-    inline void setSeed(unsigned long long seed)
-    {
+    inline void setSeed(unsigned long long seed) {
         rnd.seed(seed);
     }
     /**
@@ -20,8 +18,7 @@ namespace util
      * @return Random number in [0, x-1]
      */
     template <typename T>
-    inline T modx(T x)
-    {
+    inline T modx(T x) {
         assert(x > 0);
         return rnd() % x;
     }
@@ -50,8 +47,7 @@ namespace util
      * @return Pair of (l, r) where l <= r and both in [L, R]
      */
     template <typename T>
-    inline std::pair<T, T> randRange(T L, T r)
-    {
+    inline std::pair<T, T> randRange(T L, T r) {
         T l = rangeRand(L, r);
         T rVal = rangeRand(L, r);
         if (l > rVal) std::swap(l, rVal);
@@ -71,8 +67,7 @@ namespace util
      * @return Generated array
      */
     template <typename T>
-    inline std::vector<T> genArr(int len, T lim, std::function<T(T)> genFunc)
-    {
+    inline std::vector<T> genArr(int len, T lim, std::function<T(T)> genFunc) {
         std::vector<T> ret;
         for (int i = 0; i < len; ++i) ret.push_back(genFunc(lim));
         return ret;
@@ -83,8 +78,7 @@ namespace util
      * @param genChar Character generation function
      * @return Generated string
      */
-    inline std::string genStr(int len, std::function<char()> genChar = randChar)
-    {
+    inline std::string genStr(int len, std::function<char()> genChar = randChar) {
         std::string ret;
         for (int i = 0; i < len; ++i) ret += genChar();
         return ret;
@@ -112,8 +106,7 @@ namespace util
      * @param a Vector to shuffle
      */
     template <typename T>
-    void shuffleVec(std::vector<T> &a)
-    {
+    void shuffleVec(std::vector<T> &a) {
         std::shuffle(a.begin(), a.end(), rnd);
     }
     /**
@@ -124,10 +117,8 @@ namespace util
      * @param end Ending string
      */
     template <typename T>
-    void printArr(const std::vector<T> &arr, const std::string &split = " ", const std::string &end = "\n")
-    {
-        for (auto it = arr.begin(); it != arr.end(); ++it)
-        {
+    void printArr(const std::vector<T> &arr, const std::string &split = " ", const std::string &end = "\n") {
+        for (auto it = arr.begin(); it != arr.end(); ++it) {
             std::cout << *it;
             if (std::next(it) != arr.end()) std::cout << split;
         }
@@ -141,8 +132,7 @@ namespace util
      * @param args Other arguments
      */
     template <typename First, typename... Args>
-    void println(const First &first, Args &&...args)
-    {
+    void println(const First &first, Args &&...args) {
         std::cout << first;
         using expander = int[];
         (void)expander{0, (void(std::cout << " " << std::forward<Args>(args)), 0)...};
@@ -152,36 +142,28 @@ namespace util
      * @brief Create directory if not exists
      * @param dirName Directory name
      */
-    inline void mkdir(const std::string &dirName)
-    {
+    inline void mkdir(const std::string &dirName) {
         namespace fs = std::filesystem;
-        if (!fs::exists(dirName) || !fs::is_directory(dirName))
-        {
+        if (!fs::exists(dirName) || !fs::is_directory(dirName)) {
             fs::create_directory(dirName);
             std::cerr << "Created directory: " << dirName << "\n";
         }
     }
     // 图论模块放在子命名空间 graph 中
-    namespace graph
-    {
+    namespace graph {
         /**
          * @brief Helper to check if type is a pair of integers
          */
         template <typename T>
-        struct IsIntegerPair : std::false_type
-        {
-        };
+        struct IsIntegerPair : std::false_type {};
         template <>
-        struct IsIntegerPair<std::pair<int, int>> : std::true_type
-        {
-        };
+        struct IsIntegerPair<std::pair<int, int>> : std::true_type {};
         /**
          * @brief Graph class for storing and generating various types of graphs
          * @tparam WeightType Weight type (use int for unweighted graphs)
          */
         template <typename WeightType = int>
-        class Graph
-        {
+        class Graph {
         private:
             int vertexCount;                                        ///< Number of vertices
             int edgeCount;                                          ///< Number of edges
@@ -198,8 +180,7 @@ namespace util
              * @param toVertex To vertex (1-indexed)
              * @param weight Edge weight
              */
-            void addEdge(int fromVertex, int toVertex, WeightType weight = WeightType{1})
-            {
+            void addEdge(int fromVertex, int toVertex, WeightType weight = WeightType{1}) {
                 edgeList.emplace_back(fromVertex, toVertex, weight);
                 ++edgeCount;
             }
@@ -222,18 +203,13 @@ namespace util
              * @brief Print the graph edges only (without vertex and edge counts)
              * @param printWeights Whether to print edge weights
              */
-            void print(bool printWeights = true) const
-            {
-                for (const auto &edge : edgeList)
-                {
+            void print(bool printWeights = true) const {
+                for (const auto &edge : edgeList) {
                     int u = std::get<0>(edge), v = std::get<1>(edge);
                     WeightType w = std::get<2>(edge);
-                    if (printWeights)
-                    {
+                    if (printWeights) {
                         println(u, v, w);
-                    }
-                    else
-                    {
+                    } else {
                         println(u, v);
                     }
                 }
@@ -242,8 +218,7 @@ namespace util
              * @brief Print the graph with vertex and edge counts
              * @param printWeights Whether to print edge weights
              */
-            void printWithInfo(bool printWeights = true) const
-            {
+            void printWithInfo(bool printWeights = true) const {
                 println(vertexCount, edgeCount);
                 print(printWeights);
             }
@@ -251,8 +226,7 @@ namespace util
              * @brief Print the tree with only vertex count (no edge count for trees)
              * @param printWeights Whether to print edge weights
              */
-            void printTree(bool printWeights = true) const
-            {
+            void printTree(bool printWeights = true) const {
                 // For trees, we only print the vertex count, not the edge count
                 std::cout << vertexCount << "\n";
                 print(printWeights);
@@ -262,10 +236,8 @@ namespace util
              * @param parentArray Parent array where parentArray[i] is the parent of vertex i+1
              * @param rootVertex Root vertex (default: 1)
              */
-            static void printParentArray(const std::vector<int> &parentArray, int rootVertex = 1)
-            {
-                for (int i = 2; i <= (int)parentArray.size(); ++i)
-                {
+            static void printParentArray(const std::vector<int> &parentArray, int rootVertex = 1) {
+                for (int i = 2; i <= (int)parentArray.size(); ++i) {
                     std::cout << parentArray[i - 1];
                     if (i < (int)parentArray.size()) std::cout << " ";
                 }
@@ -281,25 +253,17 @@ namespace util
          * @return Generated weight
          */
         template <typename WeightType, typename Func>
-        WeightType generateWeight(Func &&weightGenerator, int u = 0, int v = 0)
-        {
-            if constexpr (IsIntegerPair<std::decay_t<Func>>::value)
-            {
+        WeightType generateWeight(Func &&weightGenerator, int u = 0, int v = 0) {
+            if constexpr (IsIntegerPair<std::decay_t<Func>>::value) {
                 // If weightGenerator is a pair, treat it as [min, max] range
                 return rangeRand(weightGenerator.first, weightGenerator.second);
-            }
-            else if constexpr (std::is_invocable_r<WeightType, Func, int, int>::value)
-            {
+            } else if constexpr (std::is_invocable_r<WeightType, Func, int, int>::value) {
                 // If weightGenerator is a function taking two vertices
                 return weightGenerator(u, v);
-            }
-            else if constexpr (std::is_invocable_r<WeightType, Func>::value)
-            {
+            } else if constexpr (std::is_invocable_r<WeightType, Func>::value) {
                 // If weightGenerator is a function taking no arguments
                 return weightGenerator();
-            }
-            else
-            {
+            } else {
                 // If weightGenerator is a constant value
                 return weightGenerator;
             }
@@ -318,23 +282,18 @@ namespace util
         template <typename WeightType = int, typename Func>
         Graph<WeightType> genTree(int vertexCount, int rootVertex = 1, bool requireParentLess = false,
                                   Func &&weightGenerator = WeightType{1},
-                                  bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true)
-        {
+                                  bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true) {
             Graph<WeightType> tree(vertexCount);
             std::vector<int> parentArray(vertexCount + 1, 0);
-            if (requireParentLess)
-            {
+            if (requireParentLess) {
                 // Each vertex i has parent in [1, i-1]
-                for (int i = 2; i <= vertexCount; ++i)
-                {
+                for (int i = 2; i <= vertexCount; ++i) {
                     int parent = rangeRand(1, i - 1);
                     parentArray[i] = parent;
                     WeightType weight = generateWeight<WeightType>(weightGenerator, parent, i);
                     tree.addEdge(parent, i, weight);
                 }
-            }
-            else
-            {
+            } else {
                 // Random tree construction using random parent assignment
                 std::vector<int> vertices(vertexCount);
                 for (int i = 0; i < vertexCount; ++i) vertices[i] = i + 1;
@@ -342,8 +301,7 @@ namespace util
                 // Remove root from available vertices
                 vertices.erase(std::find(vertices.begin(), vertices.end(), rootVertex));
                 std::vector<int> connectedVertices = {rootVertex};
-                for (int currentVertex : vertices)
-                {
+                for (int currentVertex : vertices) {
                     int parentVertex = choice(connectedVertices);
                     parentArray[currentVertex] = parentVertex;
                     WeightType weight = generateWeight<WeightType>(weightGenerator, parentVertex, currentVertex);
@@ -364,11 +322,9 @@ namespace util
          */
         template <typename WeightType = int, typename Func>
         Graph<WeightType> genChain(int vertexCount, Func &&weightGenerator = WeightType{1},
-                                   bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true)
-        {
+                                   bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true) {
             Graph<WeightType> chain(vertexCount);
-            for (int i = 1; i < vertexCount; ++i)
-            {
+            for (int i = 1; i < vertexCount; ++i) {
                 WeightType weight = generateWeight<WeightType>(weightGenerator, i, i + 1);
                 chain.addEdge(i, i + 1, weight);
             }
@@ -387,14 +343,11 @@ namespace util
         template <typename WeightType = int, typename Func>
         Graph<WeightType> genStar(int vertexCount, int centerVertex = 0,
                                   Func &&weightGenerator = WeightType{1},
-                                  bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true)
-        {
+                                  bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true) {
             if (centerVertex == 0) centerVertex = mod1(vertexCount);
             Graph<WeightType> star(vertexCount);
-            for (int i = 1; i <= vertexCount; ++i)
-            {
-                if (i != centerVertex)
-                {
+            for (int i = 1; i <= vertexCount; ++i) {
+                if (i != centerVertex) {
                     WeightType weight = generateWeight<WeightType>(weightGenerator, centerVertex, i);
                     star.addEdge(centerVertex, i, weight);
                 }
@@ -412,11 +365,9 @@ namespace util
          */
         template <typename WeightType = int, typename Func>
         Graph<WeightType> genCycle(int vertexCount, Func &&weightGenerator = WeightType{1},
-                                   bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true)
-        {
+                                   bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true) {
             Graph<WeightType> cycle(vertexCount);
-            for (int i = 1; i < vertexCount; ++i)
-            {
+            for (int i = 1; i < vertexCount; ++i) {
                 WeightType weight = generateWeight<WeightType>(weightGenerator, i, i + 1);
                 cycle.addEdge(i, i + 1, weight);
             }
@@ -436,13 +387,10 @@ namespace util
          */
         template <typename WeightType = int, typename Func>
         Graph<WeightType> genCompleteGraph(int vertexCount, Func &&weightGenerator = WeightType{1},
-                                           bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true)
-        {
+                                           bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true) {
             Graph<WeightType> complete(vertexCount);
-            for (int i = 1; i <= vertexCount; ++i)
-            {
-                for (int j = i + 1; j <= vertexCount; ++j)
-                {
+            for (int i = 1; i <= vertexCount; ++i) {
+                for (int j = i + 1; j <= vertexCount; ++j) {
                     WeightType weight = generateWeight<WeightType>(weightGenerator, i, j);
                     complete.addEdge(i, j, weight);
                 }
@@ -463,25 +411,21 @@ namespace util
         template <typename WeightType = int, typename Func>
         Graph<WeightType> genBipartiteGraph(int leftCount, int rightCount, int edgeCount,
                                             Func &&weightGenerator = WeightType{1},
-                                            bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = false)
-        {
+                                            bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = false) {
             int vertexCount = leftCount + rightCount;
             Graph<WeightType> bipartite(vertexCount);
             std::set<std::pair<int, int>> existingEdges;
             // If ensureConnected is true, first ensure connectivity between partitions
-            if (ensureConnected)
-            {
+            if (ensureConnected) {
                 // Connect each vertex in left partition to at least one vertex in right partition
-                for (int i = 1; i <= leftCount; ++i)
-                {
+                for (int i = 1; i <= leftCount; ++i) {
                     int v = leftCount + mod1(rightCount);
                     existingEdges.insert({i, v});
                     WeightType weight = generateWeight<WeightType>(weightGenerator, i, v);
                     bipartite.addEdge(i, v, weight);
                 }
                 // Connect each vertex in right partition to at least one vertex in left partition
-                for (int i = leftCount + 1; i <= vertexCount; ++i)
-                {
+                for (int i = leftCount + 1; i <= vertexCount; ++i) {
                     int u = mod1(leftCount);
                     if (!allowMultiEdges && existingEdges.count({u, i})) continue;
                     existingEdges.insert({u, i});
@@ -490,8 +434,7 @@ namespace util
                 }
             }
             // Add remaining edges
-            while (bipartite.getEdgeCount() < edgeCount)
-            {
+            while (bipartite.getEdgeCount() < edgeCount) {
                 int u = mod1(leftCount);              // Left partition: 1..leftCount
                 int v = leftCount + mod1(rightCount); // Right partition: leftCount+1..leftCount+rightCount
                 if (!allowMultiEdges && existingEdges.count({u, v})) continue;
@@ -514,28 +457,23 @@ namespace util
         template <typename WeightType = int, typename Func>
         Graph<WeightType> genUndirectedGraph(int vertexCount, int edgeCount,
                                              Func &&weightGenerator = WeightType{1},
-                                             bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = false)
-        {
+                                             bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = false) {
             Graph<WeightType> graph(vertexCount);
             std::set<std::pair<int, int>> existingEdges;
             // If ensureConnected is true, first generate a spanning tree
-            if (ensureConnected)
-            {
+            if (ensureConnected) {
                 auto spanningTree = genTree<WeightType>(vertexCount, 1, false, weightGenerator);
-                for (const auto &edge : spanningTree.getEdgeList())
-                {
+                for (const auto &edge : spanningTree.getEdgeList()) {
                     int u = std::get<0>(edge), v = std::get<1>(edge);
                     WeightType w = std::get<2>(edge);
                     graph.addEdge(u, v, w);
-                    if (!allowMultiEdges)
-                    {
+                    if (!allowMultiEdges) {
                         existingEdges.insert({std::min(u, v), std::max(u, v)});
                     }
                 }
             }
             // Add remaining edges
-            while (graph.getEdgeCount() < edgeCount)
-            {
+            while (graph.getEdgeCount() < edgeCount) {
                 int u = mod1(vertexCount), v = mod1(vertexCount);
                 // Check self loop
                 if (!allowSelfLoop && u == v) continue;
@@ -543,8 +481,7 @@ namespace util
                 int minVertex = std::min(u, v);
                 int maxVertex = std::max(u, v);
                 // Check multi edges
-                if (!allowMultiEdges)
-                {
+                if (!allowMultiEdges) {
                     if (existingEdges.count({minVertex, maxVertex})) continue;
                     existingEdges.insert({minVertex, maxVertex});
                 }
@@ -566,35 +503,29 @@ namespace util
         template <typename WeightType = int, typename Func>
         Graph<WeightType> genDirectedGraph(int vertexCount, int edgeCount,
                                            Func &&weightGenerator = WeightType{1},
-                                           bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = false)
-        {
+                                           bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = false) {
             Graph<WeightType> graph(vertexCount);
             std::set<std::pair<int, int>> existingEdges;
             // If ensureConnected is true, first generate a spanning tree (as directed edges)
-            if (ensureConnected)
-            {
+            if (ensureConnected) {
                 auto spanningTree = genTree<WeightType>(vertexCount, 1, false, weightGenerator);
-                for (const auto &edge : spanningTree.getEdgeList())
-                {
+                for (const auto &edge : spanningTree.getEdgeList()) {
                     int u = std::get<0>(edge), v = std::get<1>(edge);
                     WeightType w = std::get<2>(edge);
                     graph.addEdge(u, v, w);
-                    if (!allowMultiEdges)
-                    {
+                    if (!allowMultiEdges) {
                         existingEdges.insert({u, v});
                     }
                 }
             }
             // Add remaining edges
-            while (graph.getEdgeCount() < edgeCount)
-            {
+            while (graph.getEdgeCount() < edgeCount) {
                 int u = mod1(vertexCount), v = mod1(vertexCount);
                 // Check self loop
                 if (!allowSelfLoop && u == v) continue;
                 // Check multi edges
                 if (!allowMultiEdges && existingEdges.count({u, v})) continue;
-                if (!allowMultiEdges)
-                {
+                if (!allowMultiEdges) {
                     existingEdges.insert({u, v});
                 }
                 WeightType weight = generateWeight<WeightType>(weightGenerator, u, v);
@@ -615,40 +546,34 @@ namespace util
         template <typename WeightType = int, typename Func>
         Graph<WeightType> genDAG(int vertexCount, int edgeCount,
                                  Func &&weightGenerator = WeightType{1},
-                                 bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = false)
-        {
+                                 bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = false) {
             Graph<WeightType> dag(vertexCount);
             std::vector<int> topologicalOrder(vertexCount);
             for (int i = 0; i < vertexCount; ++i) topologicalOrder[i] = i + 1;
             shuffleVec(topologicalOrder);
             std::set<std::pair<int, int>> existingEdges;
             // If ensureConnected is true, first generate a spanning tree that respects topological order
-            if (ensureConnected)
-            {
+            if (ensureConnected) {
                 // Create a tree where edges only go from earlier to later vertices in topological order
-                for (int i = 1; i < vertexCount; ++i)
-                {
+                for (int i = 1; i < vertexCount; ++i) {
                     int parentIndex = modx(i);
                     int u = topologicalOrder[parentIndex];
                     int v = topologicalOrder[i];
                     WeightType weight = generateWeight<WeightType>(weightGenerator, u, v);
                     dag.addEdge(u, v, weight);
-                    if (!allowMultiEdges)
-                    {
+                    if (!allowMultiEdges) {
                         existingEdges.insert({u, v});
                     }
                 }
             }
             // Add remaining edges, ensuring they respect topological order
-            while (dag.getEdgeCount() < edgeCount)
-            {
+            while (dag.getEdgeCount() < edgeCount) {
                 int i = modx(vertexCount), j = modx(vertexCount);
                 if (i >= j) continue; // Ensure edge goes from earlier to later in topological order
                 int u = topologicalOrder[i], v = topologicalOrder[j];
                 // Check multi edges
                 if (!allowMultiEdges && existingEdges.count({u, v})) continue;
-                if (!allowMultiEdges)
-                {
+                if (!allowMultiEdges) {
                     existingEdges.insert({u, v});
                 }
                 WeightType weight = generateWeight<WeightType>(weightGenerator, u, v);
@@ -669,25 +594,19 @@ namespace util
          * @return Graph<WeightType> Generated SPFA-challenging graph
          */
         template <typename WeightType = int, typename Func1, typename Func2>
-        Graph<WeightType> genSpfaKiller(int vertexCount, int edgeCount, Func1 &&weightGenerator = WeightType{1}, Func2 &&negativeWeightGenerator = []
-                                                                                                                 { return WeightType{-1}; },
-                                        double negativeRatio = 0.1, bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true)
-        {
+        Graph<WeightType> genSpfaKiller(int vertexCount, int edgeCount, Func1 &&weightGenerator = WeightType{1}, Func2 &&negativeWeightGenerator = [] { return WeightType{-1}; }, double negativeRatio = 0.1, bool allowMultiEdges = false, bool allowSelfLoop = false, bool ensureConnected = true) {
             Graph<WeightType> graph(vertexCount);
             // Ensure we have enough edges for connectivity
-            if (edgeCount < vertexCount - 1)
-            {
+            if (edgeCount < vertexCount - 1) {
                 // If not enough edges for a chain, just generate what we can
-                for (int i = 1; i < vertexCount && graph.getEdgeCount() < edgeCount; ++i)
-                {
+                for (int i = 1; i < vertexCount && graph.getEdgeCount() < edgeCount; ++i) {
                     WeightType weight = generateWeight<WeightType>(weightGenerator, i, i + 1);
                     graph.addEdge(i, i + 1, weight);
                 }
                 return graph;
             }
             // Create a chain to ensure connectivity
-            for (int i = 1; i < vertexCount; ++i)
-            {
+            for (int i = 1; i < vertexCount; ++i) {
                 WeightType weight = generateWeight<WeightType>(weightGenerator, i, i + 1);
                 graph.addEdge(i, i + 1, weight);
             }
@@ -695,8 +614,7 @@ namespace util
             if (remainingEdges <= 0) return graph;
             // Add negative weight edges in a way that creates many relaxations
             int negativeEdgeCount = static_cast<int>(remainingEdges * negativeRatio);
-            for (int i = 0; i < negativeEdgeCount; ++i)
-            {
+            for (int i = 0; i < negativeEdgeCount; ++i) {
                 // Ensure u is at least 2 and v < u to create backward edges
                 int u = rangeRand(std::min(vertexCount, 3), vertexCount); // Start from at least vertex 3
                 int v = rangeRand(1, std::max(1, u - 1));                 // Ensure v is at least 1 and less than u
@@ -704,8 +622,7 @@ namespace util
                 graph.addEdge(u, v, weight);
             }
             // Add remaining edges
-            for (int i = 0; i < remainingEdges - negativeEdgeCount; ++i)
-            {
+            for (int i = 0; i < remainingEdges - negativeEdgeCount; ++i) {
                 int u = mod1(vertexCount), v = mod1(vertexCount);
                 if (!allowSelfLoop && u == v) continue;
                 WeightType weight = generateWeight<WeightType>(weightGenerator, u, v);
@@ -720,8 +637,7 @@ namespace util
     /**
      * @brief Data generator for competitive programming problems
      */
-    struct DataGenerator
-    {
+    struct DataGenerator {
         /**
          * @brief Run data generation process
          * @param dataName Base name for data files
@@ -743,38 +659,27 @@ namespace util
             const std::string &stdName = "std",
             const std::string &dataFolderName = "data",
             const std::string &sampleFolderName = "down",
-            std::function<void(int)> makeDataFunc = [](int)
-            {
+            std::function<void(int)> makeDataFunc = [](int) {
                 // Default implementation: do nothing
             },
-            std::function<void(int)> makeSampleFunc = [](int)
-            {
+            std::function<void(int)> makeSampleFunc = [](int) {
                 // Default implementation: do nothing
             },
-            std::function<int(int)> testGroupCountFunc = [](int)
-            { return 0; },
-            std::function<int(int)> sampleGroupCountFunc = [](int)
-            { return 0; },
-            bool outputTestCaseId = false)
-        {
+            std::function<int(int)> testGroupCountFunc = [](int) { return 0; }, std::function<int(int)> sampleGroupCountFunc = [](int) { return 0; }, bool outputTestCaseId = false) {
             const std::string dataPath = "./" + dataFolderName + "/";
             const std::string samplePath = "./" + sampleFolderName + "/";
             mkdir(dataFolderName);
             mkdir(sampleFolderName);
             // Generate test data files
-            for (int testCaseId = 1; testCaseId <= testCount; ++testCaseId)
-            {
+            for (int testCaseId = 1; testCaseId <= testCount; ++testCaseId) {
                 const auto taskName = dataName + std::to_string(testCaseId);
-                generateFile(dataPath + taskName + ".in", [testCaseId, testGroupCountFunc, outputTestCaseId, makeDataFunc]
-                             { generateMultiTestData(testCaseId, testGroupCountFunc, outputTestCaseId, makeDataFunc); });
+                generateFile(dataPath + taskName + ".in", [testCaseId, testGroupCountFunc, outputTestCaseId, makeDataFunc] { generateMultiTestData(testCaseId, testGroupCountFunc, outputTestCaseId, makeDataFunc); });
                 generateAnswer(dataPath + taskName, stdName);
             }
             // Generate sample data files
-            for (int testCaseId = 1; testCaseId <= sampleCount; ++testCaseId)
-            {
+            for (int testCaseId = 1; testCaseId <= sampleCount; ++testCaseId) {
                 const auto taskName = std::to_string(testCaseId);
-                generateFile(samplePath + taskName + ".in", [testCaseId, sampleGroupCountFunc, outputTestCaseId, makeSampleFunc]
-                             { generateMultiTestData(testCaseId, sampleGroupCountFunc, outputTestCaseId, makeSampleFunc); });
+                generateFile(samplePath + taskName + ".in", [testCaseId, sampleGroupCountFunc, outputTestCaseId, makeSampleFunc] { generateMultiTestData(testCaseId, sampleGroupCountFunc, outputTestCaseId, makeSampleFunc); });
                 generateAnswer(samplePath + taskName, stdName);
             }
         }
@@ -790,31 +695,22 @@ namespace util
         static void generateMultiTestData(int testCaseId,
                                           std::function<int(int)> groupCountFunc,
                                           bool outputTestCaseId,
-                                          std::function<void(int)> dataGenFunc)
-        {
+                                          std::function<void(int)> dataGenFunc) {
             int groupCount = groupCountFunc(testCaseId);
-            if (groupCount == 0)
-            {
+            if (groupCount == 0) {
                 // Single test case
-                if (outputTestCaseId)
-                {
+                if (outputTestCaseId) {
                     std::cout << testCaseId << "\n";
                 }
                 dataGenFunc(testCaseId);
-            }
-            else
-            {
+            } else {
                 // Multiple test cases
-                if (outputTestCaseId)
-                {
+                if (outputTestCaseId) {
                     std::cout << groupCount << " " << testCaseId << "\n";
-                }
-                else
-                {
+                } else {
                     std::cout << groupCount << "\n";
                 }
-                for (int i = 0; i < groupCount; ++i)
-                {
+                for (int i = 0; i < groupCount; ++i) {
                     dataGenFunc(testCaseId);
                 }
             }
@@ -825,8 +721,7 @@ namespace util
          * @param genFunc Generation function
          */
         template <typename Func>
-        static void generateFile(const std::string &fileName, Func genFunc)
-        {
+        static void generateFile(const std::string &fileName, Func genFunc) {
             freopen(fileName.c_str(), "wb", stdout);
             genFunc();
             std::cerr << "Generated: " << fileName << "\n";
@@ -838,21 +733,19 @@ namespace util
          * @param stdName Standard program name
          * @throw std::runtime_error if std program fails with exit code
          */
-        static void generateAnswer(const std::string &filePrefix, const std::string &stdName)
-        {
+        static void generateAnswer(const std::string &filePrefix, const std::string &stdName) {
             // 构建命令 - 跨平台兼容
             std::string cmd;
 #ifdef _WIN32
             // Windows 命令语法
-            cmd = "\"" + stdName + "\" < \"" + filePrefix + ".in\" > \"" + filePrefix + ".ans\"";
+            cmd = stdName + " < \"" + filePrefix + ".in\" > \"" + filePrefix + ".ans\"";
 #else
             // Unix/Linux 命令语法
             cmd = "./" + stdName + " < \"" + filePrefix + ".in\" > \"" + filePrefix + ".ans\"";
 #endif
             // 执行命令并检查返回值
             int ret = system(cmd.c_str());
-            if (ret != 0)
-            {
+            if (ret != 0) {
                 std::string errorMsg = "Standard program failed with exit code " + std::to_string(1u * ret);
                 errorMsg += " while generating answer for: " + filePrefix;
                 throw std::runtime_error(errorMsg);

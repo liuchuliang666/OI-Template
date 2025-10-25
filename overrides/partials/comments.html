@@ -100,6 +100,7 @@
                 hash = (hash << 5) - hash + char;
                 hash |= 0; // 转换为 32 位整数
             }
+            if (hash < 0) hash = -hash;
             return hash.toString();
         }
         init({
@@ -129,7 +130,7 @@
                 const accessToken = '2e63f76fb9aeb23235a6eda91d1ec506'
                 const username = 'wgsylcl'
                 const repo = 'waline-picture-for-oi-template'
-                const filename = simpleHash(new Date().toISOString() + file.name);
+                const filename = base64Data.slice(0, Math.min(30, base64Data.length - 2)) + simpleHash(new Date().toISOString() + file.name)
                 formData.append('content', base64Data); // base64 编码的文件内容
                 formData.append('access_token', accessToken); // 私人令牌
                 formData.append('message', '上传文件');

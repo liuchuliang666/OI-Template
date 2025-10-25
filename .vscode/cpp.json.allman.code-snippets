@@ -1,9 +1,8 @@
 {
     "template": {
-        "prefix": "```cpp",
+        "prefix": "```ctemplate",
         "body": [
             "#include <bits/stdc++.h>",
-            "using namespace std;",
             "int main()",
             "{",
             "    $0",
@@ -13,10 +12,10 @@
         "description": "template"
     },
     "OI": {
-        "prefix": "```oi",
+        "prefix": "```cpp",
         "body": [
             "#include <bits/stdc++.h>",
-            "using namespace std;",
+            "using std::cin, std::cout, std::cerr, std::endl, std::vector, std::queue, std::list, std::priority_queue, std::less, std::greater, std::map, std::unordered_map, std::set, std::unordered_set, std::string, std::pair, std::tuple, std::swap, std::copy, std::copy_n, std::fill, std::fill_n, std::reverse, std::sort, std::merge, std::inplace_merge;",
             "#define TEMPTK template <typename T = int, typename K = int>",
             "#ifdef ONLINE_JUDGE",
             "#define debug(...) (0)",
@@ -52,13 +51,10 @@
             "#define Mcp(from, to, len) memcpy(to, from, sizeof((to)[0]) * int(len))",
             "#define mst(x, val) memset(x, val, sizeof(x))",
             "#define mcp(from, to) memcpy(to, from, sizeof(from))",
-            "TEMPTK auto Max(const T &a, const K &b) { return a < b ? b : a; }",
-            "TEMPTK auto Min(const T &a, const K &b) { return a < b ? a : b; }",
+            "TEMPTK auto max(const T &a, const K &b) { return a < b ? b : a; }",
+            "TEMPTK auto min(const T &a, const K &b) { return a < b ? a : b; }",
             "TEMPTK T lowbit(const T &x) { return x & (-x); }",
-            "TEMPTK T Abs(const T &x) { return x < T{0} ? -x : x; }",
-            "#define min Min",
-            "#define max Max",
-            "#define abs Abs",
+            "TEMPTK T abs(const T &x) { return x < T{0} ? -x : x; }",
             "#define chkmx(a, b) ((a) = max((a), (b)))",
             "#define chkmn(a, b) ((a) = min((a), (b)))",
             "#define Bit(x) (int(1) << (x))",
@@ -83,15 +79,15 @@
             "#define vii vector<vi>",
             "#define pii pair<int, int>",
             "#define vpii vector<pii>",
-            "mt19937 rnd(random_device{}());",
-            "constexpr int MAXN = 2e5 + 10, inf = (sizeof(int) == 4 ? 1e9 : 1e15), P = 998244353, MAXV = MAXN << 2;",
+            "std::mt19937 rnd(std::random_device{}());",
+            "constexpr int MAXN = 2e5 + 10, MAXV = MAXN << 2, inf = (sizeof(int) == 4 ? 1e9 : 1e15), P = 998244353;",
             "void mian()",
             "{",
             "    $0",
             "}",
             "signed main()",
             "{",
-            "    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);",
+            "    std::ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);",
             "    int T = 1;",
             "    // cin >> T;",
             "    while (T--) mian();",
@@ -100,10 +96,10 @@
         ]
     },
     "Head": {
-        "prefix": "```oihead",
+        "prefix": "```oi",
         "body": [
             "#include <bits/stdc++.h>",
-            "using namespace std;",
+            "using std::cin, std::cout, std::cerr, std::endl, std::vector, std::queue, std::list, std::priority_queue, std::less, std::greater, std::map, std::unordered_map, std::set, std::unordered_set, std::string, std::pair, std::tuple, std::swap, std::copy, std::copy_n, std::fill, std::fill_n, std::reverse, std::sort, std::merge, std::inplace_merge;",
             "#define TEMPTK template <typename T = int, typename K = int>",
             "#ifdef ONLINE_JUDGE",
             "#define debug(...) (0)",
@@ -139,13 +135,10 @@
             "#define Mcp(from, to, len) memcpy(to, from, sizeof((to)[0]) * int(len))",
             "#define mst(x, val) memset(x, val, sizeof(x))",
             "#define mcp(from, to) memcpy(to, from, sizeof(from))",
-            "TEMPTK auto Max(const T &a, const K &b) { return a < b ? b : a; }",
-            "TEMPTK auto Min(const T &a, const K &b) { return a < b ? a : b; }",
+            "TEMPTK auto max(const T &a, const K &b) { return a < b ? b : a; }",
+            "TEMPTK auto min(const T &a, const K &b) { return a < b ? a : b; }",
             "TEMPTK T lowbit(const T &x) { return x & (-x); }",
-            "TEMPTK T Abs(const T &x) { return x < T{0} ? -x : x; }",
-            "#define min Min",
-            "#define max Max",
-            "#define abs Abs",
+            "TEMPTK T abs(const T &x) { return x < T{0} ? -x : x; }",
             "#define chkmx(a, b) ((a) = max((a), (b)))",
             "#define chkmn(a, b) ((a) = min((a), (b)))",
             "#define Bit(x) (int(1) << (x))",
@@ -170,8 +163,8 @@
             "#define vii vector<vi>",
             "#define pii pair<int, int>",
             "#define vpii vector<pii>",
-            "mt19937 rnd(random_device{}());",
-            "constexpr int MAXN = 2e5 + 10, inf = (sizeof(int) == 4 ? 1e9 : 1e15), P = 998244353, MAXV = MAXN << 2;",
+            "std::mt19937 rnd(std::random_device{}());",
+            "constexpr int MAXN = 2e5 + 10, MAXV = MAXN << 2, inf = (sizeof(int) == 4 ? 1e9 : 1e15), P = 998244353;",
         ]
     },
     "main": {
@@ -183,7 +176,7 @@
             "}",
             "signed main()",
             "{",
-            "    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);",
+            "    std::ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);",
             "    int T = 1;",
             "    // cin >> T;",
             "    while (T--) mian();",
@@ -229,7 +222,7 @@
         "prefix": "```head",
         "body": [
             "#include <bits/stdc++.h>",
-            "using namespace std;",
+            "using std::cin, std::cout, std::cerr, std::endl, std::vector, std::queue, std::list, std::priority_queue, std::less, std::greater, std::map, std::unordered_map, std::set, std::unordered_set, std::string, std::pair, std::tuple, std::swap, std::copy, std::copy_n, std::fill, std::fill_n, std::reverse, std::sort, std::merge, std::inplace_merge;",
         ]
     },
     "openfile": {
@@ -257,7 +250,7 @@
     },
     "fastio": {
         "prefix": "```fio",
-        "body": "ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);",
+        "body": "std::ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);",
         "description": "close sync to get faster io"
     },
     "superfastio": {
@@ -383,6 +376,6 @@
     },
     "tree in pbds": {
         "prefix": "```tree",
-        "body": "TEMPTK using pmap = pbds::tree<T, pbds::null_type, less<T>, pbds::rb_tree_tag, pbds::tree_order_statistics_node_update>;"
+        "body": "TEMPTK using pset = pbds::tree<T, pbds::null_type, less<T>, pbds::rb_tree_tag, pbds::tree_order_statistics_node_update>;"
     }
 }

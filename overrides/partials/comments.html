@@ -9,6 +9,27 @@
     <script src="https://unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/prismjs@v1/themes/prism-tomorrow.min.css" />
     <meta name="referrer" content="no-referrer">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css" />
+    <script src="https://unpkg.com/lightbox2@v2/dist/js/lightbox-plus-jquery.min.js"></script>
+    <script>
+        document.addEventListener('click', (e) => {
+            const lightbox = new Lightbox();
+            const images = [].slice
+                .call(document.querySelectorAll('#waline .vcontent img'))
+                .filter((img) => img.width > 20);
+
+            if (images.indexOf(e.target) === -1) {
+                return;
+            }
+
+            const $link = $('<a />', {
+                href: e.target.src,
+                'data-title': e.target.alt,
+                rel: 'lightbox',
+            });
+            lightbox.start($link);
+        });
+    </script> -->
 </head>
 
 <body>
@@ -72,6 +93,15 @@
                 reader.onerror = (error) => reject(error); // 出错处理
             });
         }
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = (hash << 5) - hash + char;
+                hash |= 0; // 转换为 32 位整数
+            }
+            return hash.toString();
+        }
         init({
             el: '#waline',
             dark: 'auto',
@@ -99,7 +129,7 @@
                 const accessToken = '2e63f76fb9aeb23235a6eda91d1ec506'
                 const username = 'wgsylcl'
                 const repo = 'waline-picture-for-oi-template'
-                const filename = new Date().toISOString() + file.name;
+                const filename = simpleHash(new Date().toISOString() + file.name);
                 formData.append('content', base64Data); // base64 编码的文件内容
                 formData.append('access_token', accessToken); // 私人令牌
                 formData.append('message', '上传文件');

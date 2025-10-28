@@ -28,7 +28,7 @@ namespace sgt
 #define ls ((x) << 1)
 #define rs ((x) << 1 | 1)
     Matrix tr[MAXV];
-    void pushup(int x) { tr[x] = tr[ls] * tr[rs]; }
+    void pu(int x) { tr[x] = tr[ls] * tr[rs]; }
     void build(int x, int l, int r)
     {
         if (l == r)
@@ -38,7 +38,7 @@ namespace sgt
         }
         build(ls, l, mid);
         build(rs, mid + 1, r);
-        pushup(x);
+        pu(x);
     }
     void update(int x, int l, int r, int p)
     {
@@ -51,7 +51,7 @@ namespace sgt
             update(ls, l, mid, p);
         else
             update(rs, mid + 1, r, p);
-        pushup(x);
+        pu(x);
     }
     Matrix query(int x, int l, int r, int pl, int pr)
     {

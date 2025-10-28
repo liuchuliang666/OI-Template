@@ -2,7 +2,7 @@
 using namespace std;
 const int MAXN = 1e6 + 10, MAXV = 1e8 + 10;
 int n, m, rt[MAXN], a[MAXN], tr[MAXV], ls[MAXV], rs[MAXV], idx;
-inline void pushup(int x) { tr[x] = tr[ls[x]] + tr[rs[x]]; }
+inline void pu(int x) { tr[x] = tr[ls[x]] + tr[rs[x]]; }
 inline int clone(int x)
 {
     tr[++idx] = tr[x];
@@ -21,7 +21,7 @@ void build(int &x, int l, int r)
     int mid = (l + r) >> 1;
     build(ls[x], l, mid);
     build(rs[x], mid + 1, r);
-    pushup(x);
+    pu(x);
 }
 int update(int x, int l, int r, int p, int v)
 {
@@ -36,7 +36,7 @@ int update(int x, int l, int r, int p, int v)
         ls[x] = update(ls[x], l, mid, p, v);
     else
         rs[x] = update(rs[x], mid + 1, r, p, v);
-    pushup(x);
+    pu(x);
     return x;
 }
 int query(int x, int l, int r, int p)

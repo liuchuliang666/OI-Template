@@ -28,7 +28,7 @@ void build(int x, int l, int r)
     build(rson, mid + 1, r);
     return;
 }
-void pushup(int x)
+void pu(int x)
 {
     int l = tree[x].l, r = tree[x].r;
     if (tree[x].sum)
@@ -43,12 +43,12 @@ void update(int x, ll L, ll R, int c)
     if (L <= X[l] && X[r + 1] <= R)
     {
         tree[x].sum += c;
-        pushup(x);
+        pu(x);
         return;
     }
     update(lson, L, R, c);
     update(rson, L, R, c);
-    pushup(x);
+    pu(x);
 }
 int main()
 {

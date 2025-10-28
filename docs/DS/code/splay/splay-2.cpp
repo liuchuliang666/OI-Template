@@ -7,13 +7,13 @@ const int MAXN = 1e5 + 10;
 int id, rt;
 int fa[MAXN], val[MAXN], siz[MAXN], lazy[MAXN], ch[MAXN][2];
 bool dir(int x) { return x == rs(fa[x]); }
-void pushup(int x) { siz[x] = 1 + siz[ls(x)] + siz[rs(x)]; }
+void pu(int x) { siz[x] = 1 + siz[ls(x)] + siz[rs(x)]; }
 void lazyreverse(int x)
 {
     swap(ls(x), rs(x));
     lazy[x] ^= 1;
 }
-void pushdown(int x)
+void pd(int x)
 {
     if (lazy[x])
     {
@@ -32,8 +32,8 @@ void rotate(int x)
     if (ch[y][r]) fa[ch[y][r]] = y;
     fa[y] = x;
     fa[x] = z;
-    pushup(y);
-    pushup(x);
+    pu(y);
+    pu(x);
 }
 void splay(int &z, int x)
 {
@@ -45,7 +45,7 @@ void splay(int &z, int x)
 void loc(int &z, int k)
 {
     int x = z;
-    for (pushdown(x); siz[ls(x)] != k - 1; pushdown(x))
+    for (pd(x); siz[ls(x)] != k - 1; pd(x))
     {
         if (siz[ls(x)] >= k)
             x = ls(x);
@@ -75,13 +75,13 @@ void reverse(int l, int r)
     loc(rs(rt), r - l + 2);
     int x = ls(rs(rt));
     lazyreverse(x);
-    pushdown(x);
+    pd(x);
     splay(rt, x);
 }
 void print(int x)
 {
     if (!x) return;
-    pushdown(x);
+    pd(x);
     print(ls(x));
     cout << val[x] << ' ';
     print(rs(x));

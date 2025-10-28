@@ -14,14 +14,14 @@ bool isrt(int x)
     int g = t[x].fa;
     return t[g].son[0] != x && t[g].son[1] != x;
 }
-void pushup(int x) { t[x].sum = t[x].val ^ t[ls].sum ^ t[rs].sum; }
+void pu(int x) { t[x].sum = t[x].val ^ t[ls].sum ^ t[rs].sum; }
 void reverse(int x)
 {
     if (!x) return;
     swap(ls, rs);
     t[x].tag ^= 1;
 }
-void pushdown(int x)
+void pd(int x)
 {
     if (t[x].tag)
     {
@@ -33,7 +33,7 @@ void pushdown(int x)
 void update(int x)
 {
     if (!isrt(x)) update(t[x].fa);
-    pushdown(x);
+    pd(x);
 }
 void rotate(int x)
 {
@@ -46,7 +46,7 @@ void rotate(int x)
     if (t[x].son[k ^ 1]) t[t[x].son[k ^ 1]].fa = y;
     t[y].fa = x;
     t[x].son[k ^ 1] = y;
-    pushup(y);
+    pu(y);
 }
 void splay(int x)
 {
@@ -64,7 +64,7 @@ void splay(int x)
         }
         rotate(x);
     }
-    pushup(x);
+    pu(x);
 }
 void access(int x)
 {
@@ -72,7 +72,7 @@ void access(int x)
     {
         splay(x);
         rs = s;
-        pushup(x);
+        pu(x);
     }
 }
 void makert(int x)
@@ -97,7 +97,7 @@ void cut(int x, int y)
     split(x, y);
     if (t[y].son[0] != x || rs) return;
     t[x].fa = t[y].son[0] = 0;
-    pushup(x);
+    pu(x);
 }
 int findrt(int x)
 {

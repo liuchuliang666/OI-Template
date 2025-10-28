@@ -7,7 +7,7 @@ int val[MAXN], siz[MAXN], ls[MAXN], rs[MAXN], rt, n, m, lazy[MAXN], rd[MAXN],
 mt19937 rnd(time(0));
 inline void update(int x) { siz[x] = siz[ls[x]] + siz[rs[x]] + 1; }
 inline void addtag(int x) { swap(ls[x], rs[x]), lazy[x] ^= 1; }
-inline void pushdown(int x)
+inline void pd(int x)
 {
     if (lazy[x]) addtag(ls[x]), addtag(rs[x]), lazy[x] = 0;
 }
@@ -25,7 +25,7 @@ void split(int u, int v, int &x, int &y)
         x = y = 0;
         return;
     }
-    pushdown(u);
+    pd(u);
     if (v < siz[ls[u]] + 1)
     {
         y = u;
@@ -43,14 +43,14 @@ int merge(int x, int y)
     if (!x || !y) return x | y;
     if (rd[x] <= rd[y])
     {
-        pushdown(x);
+        pd(x);
         rs[x] = merge(rs[x], y);
         update(x);
         return x;
     }
     else
     {
-        pushdown(y);
+        pd(y);
         ls[y] = merge(x, ls[y]);
         update(y);
         return y;
@@ -59,7 +59,7 @@ int merge(int x, int y)
 void display(int x)
 {
     if (!x) return;
-    pushdown(x);
+    pd(x);
     display(ls[x]);
     cout << val[x] << " ";
     display(rs[x]);

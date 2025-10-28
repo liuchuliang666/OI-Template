@@ -7,7 +7,7 @@ int fa[MAXN], val[MAXN], cnt[MAXN], siz[MAXN], ch[MAXN][2];
 #define ls(x) ch[x][0]
 #define rs(x) ch[x][1]
 bool dir(int x) { return rs(fa[x]) == x; }
-void pushup(int x) { siz[x] = siz[ls(x)] + siz[rs(x)] + cnt[x]; }
+void pu(int x) { siz[x] = siz[ls(x)] + siz[rs(x)] + cnt[x]; }
 void rotate(int x)
 {
     int y = fa[x], z = fa[y];
@@ -18,8 +18,8 @@ void rotate(int x)
     if (ch[y][r]) fa[ch[y][r]] = y;
     fa[y] = x;
     fa[x] = z;
-    pushup(y);
-    pushup(x);
+    pu(y);
+    pu(x);
 }
 void splay(int &z, int x)
 {
@@ -59,7 +59,7 @@ int merge(int x, int y)
     loc(y, 1);
     ls(y) = x;
     fa[x] = y;
-    pushup(y);
+    pu(y);
     return y;
 }
 void insert(int v)
@@ -133,24 +133,24 @@ int main()
         cin >> op >> x;
         switch (op)
         {
-        case 1:
-            insert(x);
-            break;
-        case 2:
-            remove(x);
-            break;
-        case 3:
-            cout << findrank(x) << endl;
-            break;
-        case 4:
-            cout << findkth(x) << endl;
-            break;
-        case 5:
-            cout << findprev(x) << endl;
-            break;
-        case 6:
-            cout << findnext(x) << endl;
-            break;
+            case 1:
+                insert(x);
+                break;
+            case 2:
+                remove(x);
+                break;
+            case 3:
+                cout << findrank(x) << endl;
+                break;
+            case 4:
+                cout << findkth(x) << endl;
+                break;
+            case 5:
+                cout << findprev(x) << endl;
+                break;
+            case 6:
+                cout << findnext(x) << endl;
+                break;
         }
     }
     return 0;

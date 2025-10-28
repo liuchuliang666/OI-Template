@@ -4,7 +4,7 @@ typedef long long ll;
 const int MAXN = 2e5 + 10, MAXV = MAXN * 200;
 int n, m, rt[MAXN], ls[MAXV], rs[MAXV], idx, cnt = 1;
 ll tr[MAXV];
-inline void pushup(int x) { tr[x] = tr[ls[x]] + tr[rs[x]]; }
+inline void pu(int x) { tr[x] = tr[ls[x]] + tr[rs[x]]; }
 void add(int &x, int l, int r, int p, ll v)
 {
     if (!x) x = ++idx;
@@ -15,7 +15,7 @@ void add(int &x, int l, int r, int p, ll v)
         add(ls[x], l, mid, p, v);
     else
         add(rs[x], mid + 1, r, p, v);
-    pushup(x);
+    pu(x);
 }
 ll qsum(int x, int l, int r, int pl, int pr)
 {
@@ -48,7 +48,7 @@ int merge(int x, int y, int l, int r)
     int mid = (l + r) >> 1;
     ls[x] = merge(ls[x], ls[y], l, mid);
     rs[x] = merge(rs[x], rs[y], mid + 1, r);
-    pushup(x);
+    pu(x);
     return x;
 }
 void split(int &x, int &y, int l, int r, int pl, int pr)
@@ -64,8 +64,8 @@ void split(int &x, int &y, int l, int r, int pl, int pr)
     int mid = (l + r) >> 1;
     if (pl <= mid) split(ls[x], ls[y], l, mid, pl, pr);
     if (mid < pr) split(rs[x], rs[y], mid + 1, r, pl, pr);
-    pushup(x);
-    pushup(y);
+    pu(x);
+    pu(y);
 }
 int main()
 {
@@ -78,26 +78,26 @@ int main()
         cin >> op;
         switch (op)
         {
-        case 0:
-            cin >> p >> x >> y;
-            split(rt[p], rt[++cnt], 1, n, x, y);
-            break;
-        case 1:
-            cin >> p >> t;
-            rt[p] = merge(rt[p], rt[t], 1, n);
-            break;
-        case 2:
-            cin >> p >> x >> q;
-            add(rt[p], 1, n, q, x);
-            break;
-        case 3:
-            cin >> p >> x >> y;
-            cout << qsum(rt[p], 1, n, x, y) << "\n";
-            break;
-        case 4:
-            cin >> p >> k;
-            cout << qrnk(rt[p], 1, n, k) << '\n';
-            break;
+            case 0:
+                cin >> p >> x >> y;
+                split(rt[p], rt[++cnt], 1, n, x, y);
+                break;
+            case 1:
+                cin >> p >> t;
+                rt[p] = merge(rt[p], rt[t], 1, n);
+                break;
+            case 2:
+                cin >> p >> x >> q;
+                add(rt[p], 1, n, q, x);
+                break;
+            case 3:
+                cin >> p >> x >> y;
+                cout << qsum(rt[p], 1, n, x, y) << "\n";
+                break;
+            case 4:
+                cin >> p >> k;
+                cout << qrnk(rt[p], 1, n, k) << '\n';
+                break;
         }
     }
     return 0;

@@ -16,8 +16,8 @@ void addtag(int x, ll v)
     tr[x] += v;
     lazy[x] += v;
 }
-void pushup(int x) { tr[x] = min(tr[ls], tr[rs]); }
-void pushdown(int x)
+void pu(int x) { tr[x] = min(tr[ls], tr[rs]); }
+void pd(int x)
 {
     if (lazy[x])
     {
@@ -36,7 +36,7 @@ void build(int x, int l, int r)
     }
     build(ls, l, mid);
     build(rs, mid + 1, r);
-    pushup(x);
+    pu(x);
 }
 void update(int x, int l, int r, int pl, int pr, ll v)
 {
@@ -44,12 +44,12 @@ void update(int x, int l, int r, int pl, int pr, ll v)
         return;
     if (pl <= l && r <= pr)
         return addtag(x, v);
-    pushdown(x);
+    pd(x);
     if (pl <= mid)
         update(ls, l, mid, pl, pr, v);
     if (mid < pr)
         update(rs, mid + 1, r, pl, pr, v);
-    pushup(x);
+    pu(x);
 }
 ll query(int x, int l, int r, int pl, int pr)
 {

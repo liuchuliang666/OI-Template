@@ -6,23 +6,23 @@ const int MAXN = 5e5 + 10;
 int n, m, dep[MAXN], ls[MAXN], rs[MAXN], siz[MAXN], f[MAXN], g[MAXN], tag[MAXN], val[MAXN];
 vector<int> e[MAXN];
 void addtag(int x, int v) { val[x] += v, tag[x] += v; }
-void pushdown(int x)
+void pd(int x)
 {
     if (tag[x]) addtag(ls[x], tag[x]), addtag(rs[x], tag[x]), tag[x] = 0;
 }
-void pushup(int x) { siz[x] = siz[ls[x]] + siz[rs[x]] + 1, dep[x] = dep[rs[x]] + 1; }
+void pu(int x) { siz[x] = siz[ls[x]] + siz[rs[x]] + 1, dep[x] = dep[rs[x]] + 1; }
 int merge(int x, int y)
 {
     if (!x || !y) return x | y;
     if (val[x] < val[y]) swap(x, y);
-    pushdown(x), pushdown(y), rs[x] = merge(rs[x], y);
+    pd(x), pd(y), rs[x] = merge(rs[x], y);
     if (dep[ls[x]] < dep[rs[x]]) swap(ls[x], rs[x]);
-    return pushup(x), x;
+    return pu(x), x;
 }
 int pop(int &x)
 {
     int p = x;
-    return pushdown(x), x = merge(ls[x], rs[x]), ls[p] = rs[p] = dep[p] = 0, siz[p] = 1, p;
+    return pd(x), x = merge(ls[x], rs[x]), ls[p] = rs[p] = dep[p] = 0, siz[p] = 1, p;
 }
 void dfs(int u, int fa)
 {

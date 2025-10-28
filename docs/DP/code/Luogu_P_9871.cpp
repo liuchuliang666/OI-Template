@@ -14,7 +14,7 @@ struct node
 ll b[MAXM << 1], f[MAXM << 1];
 bool cmp(node a, node b) { return a.r < b.r; }
 ll lazy[MAXM << 3], tr[MAXM << 3];
-void pushup(int x) { tr[x] = max(tr[ls], tr[rs]); }
+void pu(int x) { tr[x] = max(tr[ls], tr[rs]); }
 void build(int x, int l, int r)
 {
     lazy[x] = 0;
@@ -24,14 +24,14 @@ void build(int x, int l, int r)
         return;
     }
     build(ls, l, mid), build(rs, mid + 1, r);
-    pushup(x);
+    pu(x);
 }
 void addtag(int x, ll v)
 {
     tr[x] += v;
     lazy[x] += v;
 }
-void pushdown(int x)
+void pd(int x)
 {
     if (!lazy[x])
         return;
@@ -43,7 +43,7 @@ ll query(int x, int l, int r, int pl, int pr)
 {
     if (pl <= l && r <= pr)
         return tr[x];
-    pushdown(x);
+    pd(x);
     ll ans = -1e18;
     if (pl <= mid)
         ans = max(ans, query(ls, l, mid, pl, pr));
@@ -58,12 +58,12 @@ void assign(int x, int l, int r, int p, ll val)
         tr[x] = val;
         return;
     }
-    pushdown(x);
+    pd(x);
     if (p <= mid)
         assign(ls, l, mid, p, val);
     else
         assign(rs, mid + 1, r, p, val);
-    pushup(x);
+    pu(x);
 }
 void update(int x, int l, int r, int pl, int pr, ll val)
 {
@@ -72,12 +72,12 @@ void update(int x, int l, int r, int pl, int pr, ll val)
         addtag(x, val);
         return;
     }
-    pushdown(x);
+    pd(x);
     if (pl <= mid)
         update(ls, l, mid, pl, pr, val);
     if (mid < pr)
         update(rs, mid + 1, r, pl, pr, val);
-    pushup(x);
+    pu(x);
 }
 void solve()
 {

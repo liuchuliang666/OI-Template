@@ -53,17 +53,17 @@ int main()
     return 0;
 }
 void addtag(int x, int v);
-void pushdown(int x);
-void pushup(int x);
+void pd(int x);
+void pu(int x);
 int mergeWithTag(int x, int y)
 {
     if (!x || !y) return x | y;
-    pushdown(x);
+    pd(x);
     if (val[y] < val[x]) swap(x, y);
     rs[x] = mergeWithTag(rs[x], y);
     if (dist[ls[x]] < dist[rs[x]]) swap(ls[x], rs[x]);
-    pushup(x);
+    pu(x);
     dist[x] = dist[rs[x]] + 1;
     return x;
 }
-int pop(int x) { return pushdown(x), pushup(x = mergeWithTag(ls[x], rs[x])), x; }
+int pop(int x) { return pd(x), pu(x = mergeWithTag(ls[x], rs[x])), x; }

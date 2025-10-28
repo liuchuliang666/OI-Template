@@ -53,7 +53,7 @@ public:
         int mid = (l + r) >> 1;
         return data[x] = (bulid(ls(x), l, mid) + bulid(rs(x), mid + 1, r)) % mod;
     }
-    inline void pushdown(int x, int l, int r)
+    inline void pd(int x, int l, int r)
     {
         int mid = (l + r) >> 1;
         data[ls(x)] = (data[ls(x)] + (mid - l + 1) * lazy[x]) % mod;
@@ -73,7 +73,7 @@ public:
         }
         if (r < tl || l > tr) return;
         int mid = (l + r) >> 1;
-        pushdown(x, l, r);
+        pd(x, l, r);
         if (tl <= mid) update(ls(x), l, mid, tl, tr, k);
         if (mid < tr) update(rs(x), mid + 1, r, tl, tr, k);
         data[x] = (data[ls(x)] + data[rs(x)]) % mod;
@@ -84,7 +84,7 @@ public:
         if (tl <= l && r <= tr) return data[x];
         if (r < tl || l > tr) return 0;
         int mid = (l + r) >> 1, ret = 0;
-        pushdown(x, l, r);
+        pd(x, l, r);
         if (tl <= mid) ret = (ret + query(ls(x), l, mid, tl, tr)) % mod;
         if (mid < tr) ret = (ret + query(rs(x), mid + 1, r, tl, tr)) % mod;
         return ret;
@@ -161,24 +161,24 @@ int main()
         int opt = read(), x, y, z;
         switch (opt)
         {
-        case 1:
-            x = read(), y = read(), z = read();
-            add_path(x, y, z);
-            break;
-        case 2:
-            x = read(), y = read();
-            write(query_path(x, y));
-            puts("");
-            break;
-        case 3:
-            x = read(), z = read();
-            add_son(x, z);
-            break;
-        case 4:
-            x = read();
-            write(query_son(x));
-            puts("");
-            break;
+            case 1:
+                x = read(), y = read(), z = read();
+                add_path(x, y, z);
+                break;
+            case 2:
+                x = read(), y = read();
+                write(query_path(x, y));
+                puts("");
+                break;
+            case 3:
+                x = read(), z = read();
+                add_son(x, z);
+                break;
+            case 4:
+                x = read();
+                write(query_son(x));
+                puts("");
+                break;
         }
     }
     return 0;

@@ -23,7 +23,7 @@ inline int getlca(int x, int y)
         if (fa[x][i] != fa[y][i]) x = fa[x][i], y = fa[y][i];
     return fa[x][0];
 }
-inline void pushup(int x)
+inline void pu(int x)
 {
     if (!cnt[ls[x]] && !cnt[rs[x]]) return;
     if (cnt[ls[x]] >= cnt[rs[x]])
@@ -45,7 +45,7 @@ void update(int &x, int l, int r, int p, int v)
         update(ls[x], l, mid, p, v);
     else
         update(rs[x], mid + 1, r, p, v);
-    pushup(x);
+    pu(x);
 }
 int merge(int x, int y, int l, int r)
 {
@@ -59,7 +59,7 @@ int merge(int x, int y, int l, int r)
     int mid = (l + r) >> 1;
     ls[x] = merge(ls[x], ls[y], l, mid);
     rs[x] = merge(rs[x], rs[y], mid + 1, r);
-    pushup(x);
+    pu(x);
     return x;
 }
 void calcans(int u)

@@ -11,6 +11,7 @@ edit_uri_template: "https://gitee.com/liuchuliang666/oi-template/edit/main/docs/
 nav:
   - 简介:
     - 首页: index.md
+    - 友链: Home/links.md
   - 语言与工具相关:
     - 语言相关: Lang/Lang.md
     - C++ 标准库:
@@ -26,6 +27,9 @@ nav:
       - bitset: Lang/csl/bitset.md
       - string: Lang/csl/string.md
       - pair: Lang/csl/pair.md
+    - 语法糖: Lang/candy.md
+    - 常量表达式: Lang/const.md
+    - C++ 新特性: Lang/new.md
     - 重载运算符: Lang/op-overload.md
     - Lambda 表达式: Lang/lambda.md
     - pbds库: Lang/pb_ds库.md

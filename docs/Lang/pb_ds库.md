@@ -158,8 +158,8 @@ tr.insert(5);
 tr.insert(6);
 tr.insert(7);
 
-cout << *tr.find_by_order(1) << endl; // 输出 5
-cout << tr.order_of_key(5) << endl;   // 输出 1
+cout << *tr.find_by_order(1) << endl; // 输出 6
+cout << tr.order_of_key(5) << endl;   // 输出 0
 ```
 ##### 4.3.2 合并与分裂
 ```cpp

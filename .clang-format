@@ -7,7 +7,6 @@ BraceWrapping:
   AfterLambdaBody: false
   BeforeLambdaBody: false
   AfterFunction: true
-  BeforeWhile: true
   AfterClass: true
   AfterControlStatement: true
   AfterEnum: true

@@ -1,105 +1,126 @@
 #include <bits/stdc++.h>
 using namespace std;
-inline int read()
+#define TEMPTK template <typename T = int, typename K = int>
+#ifdef ONLINE_JUDGE
+#define debug(...) (0)
+struct __CERR
 {
-    int x = 0, f = 1;
-    char ch;
-    for (ch = getchar(); !isdigit(ch); ch = getchar())
-        if (ch == '-') f = -1;
-    for (; isdigit(ch); ch = getchar())
+    TEMPTK __CERR &operator<<(const T &x) { return *this; }
+} __cerr;
+#define cerr __cerr
+#define endl '\n'
+#else
+#define debug(...) fprintf(stderr, ##__VA_ARGS__)
+#endif
+#ifdef CPH
+#define openfile(x) (0)
+#define endl '\n'
+#else
+#define openfile(x) (freopen(x ".in", "r", stdin), freopen(x ".out", "w", stdout))
+#endif
+#define ef emplace_front
+#define eb emplace_back
+#define ep emplace
+#define pb push_back
+#define ins insert
+#define fi first
+#define se second
+#define SZ(x) int((x).size())
+#define ALL(x) (x).begin(), (x).end()
+#define rep(i, l, r, ...) for (int i = int(l), ##__VA_ARGS__; i <= int(r); ++i)
+#define per(i, r, l, ...) for (int i = int(r), ##__VA_ARGS__; i >= int(l); --i)
+#define Rep(i, l, r, ...) for (int i = int(l), i##e = int(r), ##__VA_ARGS__; i <= i##e; ++i)
+#define Per(i, r, l, ...) for (int i = int(r), i##e = int(l), ##__VA_ARGS__; i >= i##e; --i)
+#define Mst(x, val, len) memset(x, val, sizeof((x)[0]) * int(len))
+#define Mcp(from, to, len) memcpy(to, from, sizeof((to)[0]) * int(len))
+#define mst(x, val) memset(x, val, sizeof(x))
+#define mcp(from, to) memcpy(to, from, sizeof(from))
+#define Bit(x) (int(1) << (x))
+#define Add(a, b) ((a) = tadd((a), (b)))
+#define Mul(a, b) ((a) = qmul((a), (b)))
+#define add(a, b) (((a) += (b)) >= P ? (a) -= P : (a))
+#define mul(a, b) (((a) *= (b)) %= P)
+#define mid (((l) + (r)) >> 1)
+#define ls ((x) << 1)
+#define rs ((x) << 1 | 1)
+#define lson ls, l, mid
+#define rson rs, mid + 1, r
+#define pbds __gnu_pbds
+#define i128 __int128
+#define int ll
+typedef long long ll;
+typedef unsigned long long ull;
+#define db double
+typedef long double ld;
+#define vi vector<int>
+#define vii vector<vi>
+#define pii pair<int, int>
+#define vpii vector<pii>
+#define chkmx(a, b) ((a) = max((a), (b)))
+#define chkmn(a, b) ((a) = min((a), (b)))
+constexpr int inf = (sizeof(int) == 4 ? 1e9 : 1e15), INF = numeric_limits<int>::max() / 2;
+mt19937 rnd(random_device{}());
+namespace LCL
+{
+    constexpr int MAXN = 5e5 + 10, MAXV = MAXN << 2, P = 998244353;
+    auto min = [](auto x, auto y) { return x < y ? x : y; };
+    auto max = [](auto x, auto y) { return x < y ? y : x; };
+    auto tadd = [](auto x, auto y) { return add(x, y); };
+    auto cadd = [](auto x, auto y) { return x + min(y, inf - x); };
+    auto qmul = [](auto x, auto y) { return (x = (ull)x * y - (ull)((ld)x / P * y) * P) < 0 ? x + P : x; };
+    auto cmod = [](auto x) { return (x %= P) < 0 ? x + P : x; };
+    auto abs = [](auto x) { return x < 0 ? -x : x; };
+    auto lowb = [](auto x) { return x & (-x); };
+    int n, m, dfc, low[MAXN], dfn[MAXN], tp, stk[MAXN];
+    vii dccs;
+    vi e[MAXN];
+    void tarjan(int u)
     {
-        x = (x << 3) + (x << 1) + (ch - '0');
-    }
-    return f * x;
-}
-inline void write(int x)
-{
-    if (x < 0)
-    {
-        putchar('-');
-        x = -x;
-    }
-    if (x > 9) write(x / 10);
-    putchar(x % 10 + '0');
-    return;
-}
-const int MAXN = 5e5 + 10, MAXM = 2e6 + 10;
-struct edge
-{
-    int u, v;
-} E[MAXM << 1];
-int n, m, head[MAXN], nex[MAXM << 1], edge_cnt, have_dcc, inde, dfn[MAXN],
-    low[MAXN];
-void add(int u, int v)
-{
-    if (u == v) return;
-    edge_cnt++;
-    E[edge_cnt] = (edge){u, v};
-    nex[edge_cnt] = head[u];
-    head[u] = edge_cnt;
-    return;
-}
-stack<int> sta;
-vector<int> dcc[MAXN];
-void dfs(int u)
-{
-    dfn[u] = low[u] = inde++;
-    if (!head[u])
-    {
-        have_dcc++;
-        dcc[have_dcc].push_back(u);
-        return;
-    }
-    sta.push(u);
-    for (int i = head[u]; i; i = nex[i])
-    {
-        int v = E[i].v;
-        if (!dfn[v])
-        {
-            dfs(v);
-            low[u] = min(low[u], low[v]);
-            if (low[v] >= dfn[u])
+        stk[++tp] = u, low[u] = dfn[u] = ++dfc;
+        for (int v : e[u])
+            if (!dfn[v])
             {
-                int p;
-                have_dcc++;
-                do
+                tarjan(v), chkmn(low[u], low[v]);
+                if (dfn[u] <= low[v])
                 {
-                    p = sta.top();
-                    sta.pop();
-                    dcc[have_dcc].push_back(p);
-                } while (p != v);
-                dcc[have_dcc].push_back(u);
+                    vi dcc;
+                    do dcc.eb(stk[tp]);
+                    while (stk[tp--] ^ v);
+                    dcc.eb(u), dccs.eb(move(dcc));
+                }
             }
-        }
-        else
-            low[u] = min(low[u], dfn[v]);
+            else
+                chkmn(low[u], dfn[v]);
     }
-    return;
-}
-int main()
-{
-    n = read(), m = read();
-    while (m--)
+    void main()
     {
-        int u = read(), v = read();
-        add(u, v);
-        add(v, u);
-    }
-    for (int i = 1; i <= n; i++)
-    {
-        if (!dfn[i])
+        cin >> n >> m;
+        rep(i, 1, m, u, v)
         {
-            sta = stack<int>();
-            dfs(i);
+            cin >> u >> v;
+            if (u ^ v) e[u].eb(v), e[v].eb(u);
+        }
+        rep(i, 1, n) if (!dfn[i])
+        {
+            if (e[i].empty())
+                dccs.eb(vi{i});
+            else
+                tp = 0, tarjan(i);
+        }
+        cout << SZ(dccs) << endl;
+        for (vi &dcc : dccs)
+        {
+            cout << SZ(dcc) << " ";
+            for (int &x : dcc) cout << x << " ";
+            cout << endl;
         }
     }
-    write(have_dcc);
-    puts("");
-    for (int i = 1; i <= have_dcc; i++)
-    {
-        write(dcc[i].size()), putchar(' ');
-        for (auto p : dcc[i]) write(p), putchar(' ');
-        puts("");
-    }
+} // namespace LCL
+signed main()
+{
+    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+    int T = 1;
+    // cin >> T;
+    while (T--) LCL::main();
     return 0;
 }

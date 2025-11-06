@@ -4,8 +4,6 @@ IndentWidth: 4
 TabWidth: 4
 BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterLambdaBody: false
-  BeforeLambdaBody: false
   AfterFunction: true
   AfterClass: true
   AfterControlStatement: true

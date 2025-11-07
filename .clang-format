@@ -14,9 +14,6 @@ BraceWrapping:
   AfterUnion: true
   BeforeCatch: true
   BeforeElse: true
-  SplitEmptyFunction: true
-  SplitEmptyRecord: true
-  SplitEmptyNamespace: true
 BreakTemplateDeclarations: false
 IndentCaseLabels: true
 ColumnLimit: 0

@@ -42,7 +42,7 @@
             "#endif",
             "#define openfile(x) (freopen(x \".in\", \"r\", stdin), freopen(x \".out\", \"w\", stdout))",
             "#ifdef CPH",
-            "#define freopen(x) (0)",
+            "#define freopen(...) (0)",
             "#define endl '\\n'",
             "#endif",
             "#define ef emplace_front",

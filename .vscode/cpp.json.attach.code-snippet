@@ -276,7 +276,7 @@
         ]
     },
     "tree in pbds": {
-        "prefix": "```tree",
+        "prefix": "```pset",
         "body": "TEMPTK using pset = pbds::tree<T, pbds::null_type, less<T>, pbds::rb_tree_tag, pbds::tree_order_statistics_node_update>;"
     }
 }

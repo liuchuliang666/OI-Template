@@ -28,6 +28,7 @@ nav:
       - string: Lang/csl/string.md
       - pair: Lang/csl/pair.md
     - 语法糖: Lang/candy.md
+    - 奇技淫巧: Lang/spec.md
     - 常量表达式: Lang/const.md
     - C++ 新特性: Lang/new.md
     - 重载运算符: Lang/op-overload.md

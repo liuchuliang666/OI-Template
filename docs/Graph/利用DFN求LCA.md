@@ -32,35 +32,40 @@ DFS 序的性质：祖先先于后代遍历，即若 $u$ 是 $v$ 的祖先，则
 预处理 ST 表的复杂度仍为 $\mathcal{O}(n\log n)$，但常数减少一半。以下是模板题 [P3379](https://www.luogu.com.cn/problem/P3379) 的代码。
 
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
-constexpr int N = 5e5 + 5;
-int n, m, R, dn, dfn[N], mi[19][N];
-vector<int> e[N];
-int get(int x, int y) {return dfn[x] < dfn[y] ? x : y;}
-void dfs(int id, int f) {
-  mi[0][dfn[id] = ++dn] = f;
-  for(int it : e[id]) if(it != f) dfs(it, id); 
-}
-int lca(int u, int v) {
-  if(u == v) return u;
-  if((u = dfn[u]) > (v = dfn[v])) swap(u, v);
-  int d = __lg(v - u++);
-  return get(mi[d][u], mi[d][v - (1 << d) + 1]);
-}
-int main() {
-  scanf("%d %d %d", &n, &m, &R);
-  for(int i = 2, u, v; i <= n; i++) {
-    scanf("%d %d", &u, &v);
-    e[u].push_back(v), e[v].push_back(u);
-  }
-  dfs(R, 0);
-  for(int i = 1; i <= __lg(n); i++)
-    for(int j = 1; j + (1 << i) - 1 <= n; j++)
-      mi[i][j] = get(mi[i - 1][j], mi[i - 1][j + (1 << i - 1)]);
-  for(int i = 1, u, v; i <= m; i++) scanf("%d %d", &u, &v), printf("%d\n", lca(u, v));
-  return 0;
-}
+namespace LCL {
+    constexpr int MAXN = 5e5 + 10, MAXV = MAXN << 2, P = 998244353;
+    auto min = [](auto x, auto y) { return x < y ? x : y; };
+    auto max = [](auto x, auto y) { return x < y ? y : x; };
+    auto tadd = [](auto x, auto y) { return add(x, y); };
+    auto cadd = [](auto x, auto y) { return x + min(y, inf - x); };
+    auto qmul = [](auto x, auto y) { return (x = (ull)x * y - (ull)((ld)x / P * y) * P) += x >> 31 & P; };
+    auto cmod = [](auto x) { return (x %= P) += x >> 31 & P; };
+    auto abs = [](auto x) { return x < 0 ? -x : x; };
+    auto lowb = [](auto x) { return x & (-x); };
+    int n, m, s, st[MAXN][24], dfn[MAXN], dfc, dep[MAXN];
+    vi e[MAXN];
+    void dfs(int u, int f) {
+        dep[u] = dep[f] + 1, st[dfn[u] = ++dfc][0] = f;
+        for (int v : e[u])
+            if (v ^ f) dfs(v, u);
+    }
+    void init() {
+        dfs(s, 0);
+        rep(i, 1, __lg(n)) rep(j, 1, n + 1 - (1 << i)) st[j][i] = std::min(st[j][i - 1], st[j + (1 << (i - 1))][i - 1], [](int x, int y) { return dep[x] < dep[y]; });
+    }
+    int lca(int x, int y) {
+        if (x == y) return x;
+        if ((x = dfn[x]) > (y = dfn[y])) swap(x, y);
+        int k = __lg(y - x++);
+        return std::min(st[x][k], st[y - (1 << k) + 1][k], [](int x, int y) { return dep[x] < dep[y]; });
+    }
+    void main() {
+        cin >> n >> m >> s;
+        rep(i, 2, n, u, v) cin >> u >> v, e[u].eb(v), e[v].eb(u);
+        init();
+        rep(i, 1, m, x, y) cin >> x >> y, cout << lca(x, y) << endl;
+    }
+} // namespace LCL
 ```
 
 ### 和各种 LCA 算法的对比

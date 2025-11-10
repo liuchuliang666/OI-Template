@@ -90,6 +90,7 @@ nav:
     - 图论: Graph/图论.md
     - 一些概念: Graph/一些概念.md
     - 最短路: Graph/shortest-path.md
+    - 利用DFN求LCA: Graph/利用DFN求LCA.md
     - 2-SAT: Graph/2-SAT.md
     - 点分治: Graph/点分治.md
     - 连通分量: Graph/连通分量.md

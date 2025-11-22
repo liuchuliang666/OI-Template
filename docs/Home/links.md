@@ -22,6 +22,7 @@
 - [获奖信息查询](https://oier.baoshuo.dev/)
 - [图论小工具](https://csacademy.com/app/graph_editor/)
 - [图论小工具 Pro Max](https://anacc22.github.io/another_graph_editor/)
+- [格式化文章工具](https://tj.imken.dev/#/)
 - [题面生成工具](https://cnoi.mrpython.top/)
 - [找规律](https://oeis.org/)
 - [原题机](https://yuantiji.ac/zh/)

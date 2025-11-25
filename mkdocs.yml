@@ -73,6 +73,7 @@ nav:
     - ST 表: DivideAndDouble/ST表.md
   - 动态规划:
     - 动态规划: DP/动态规划.md
+    - 二进制集合操作: DP/binary-set.md
     - 数位 DP: DP/数位DP.md
     - 插头 DP: DP/插头DP.md
     - 轮廓线 DP: DP/轮廓线DP.md

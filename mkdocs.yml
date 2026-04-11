@@ -254,7 +254,8 @@ theme:
 
 plugins:
   - mkdocs-video
-  - search
+  - search:
+      separator: '[\s\u200b\-]'
 
 hooks:
   - hooks/katex.py
